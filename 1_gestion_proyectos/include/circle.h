@@ -21,11 +21,36 @@ struct Circle {
 // Funciones para manejar círculos
 // -------------------------------------------
 
-/// Lee círculo en formato radio-centro, incluyendo '-' y leyendo "centro" con ReadPoint
+/**
+  * @brief Lee círculo desde la entrada estándar, en formato radio-centro, incluyendo '-'
+  * y leyendo "centro" con ReadPoint
+  * @deprecated Se aconseja el uso de la función con un parámetro (ver siguiente)
+  */
 Circle ReadCircle();
 
-/// Escribe círculo en formato radio-centro, incluyendo '-' y escribiendo "centro" con WritePoint
+/**
+  * @brief Lee un círculo desde un flujo de entrada, usando ReadPoint para leer el centro.
+  * @param Flujo de entrada de datos (is), círculo a leer (c)
+  * @prec El formato debe ser radio-(x,y), donde (x,y) es el centro
+  * @return Devuelve si ha tenido éxito la lectura
+  */
+bool ReadCircle ( std::istream& is, Circle& c );
+
+/**
+  * @brief Escribe círculo a la salida estándar, en formato radio-centro, incluyendo '-'
+  * y escribiendo "centro" con WritePoint
+  * @deprecated Se aconseja el uso de la función con dos parámetros (ver siguiente)
+  */
 void WriteCircle( const Circle& c );
+
+/**
+  * @brief Escribe un círculo a un flujo de salida, en formato radio-centro, escribiendo
+  * "centro" con WritePoint
+  * @param Flujo de salida de datos (os), círculo a escribir (c)
+  * @return Devuelve si ha tenido éxito la escritura
+  */
+bool WriteCircle ( std::ostream& os, const Circle& c );
+
 
 /// Inicializa circulo c con centro y radio
 void InitCircle ( Circle& c, Point center, double radius );

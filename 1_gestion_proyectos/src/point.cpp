@@ -3,7 +3,7 @@
   * @brief Implementación de las funciones que manejan puntos en 2D
   * @author Miguel Lentisco & Antonio Coín
   */
-  
+
 #include <iostream>
 #include <cmath> // sqrt
 #include "point.h"
@@ -20,9 +20,26 @@ Point ReadPoint()
   return p;
 }
 
+bool ReadPoint ( istream& is, Point& p )
+{
+  char c;
+
+  is >> c >> p.x >> c >> p.y >> c;
+
+  return is;
+}
+
 void WritePoint ( const Point& p )
 {
   cout << "(" << p.x << "," << p.y << ")";
+}
+
+bool WritePoint ( ostream& os, const Point& p )
+{
+
+  os << "(" << p.x << "," << p.y << ")";
+
+  return os;
 }
 
 void InitPoint ( Point& p, double cx, double cy )

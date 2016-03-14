@@ -27,7 +27,7 @@ DOC = doc
 
 .PHONY: all clean mrproper distribute docs
 
-all: $(LIB)/lib$(LIBNAME).a $(addprefix $(BIN)/, central area)
+all: $(LIB)/lib$(LIBNAME).a $(addprefix $(BIN)/, central area distance)
 
 ## make the executables files
 $(BIN)/central: $(OBJ)/central.o
@@ -36,11 +36,17 @@ $(BIN)/central: $(OBJ)/central.o
 $(BIN)/area: $(OBJ)/area.o
 	$(CXX) $(LDFLAGS) -o $@ $^ $(LDLIBS)
 
+$(BIN)/distance: $(OBJ)/distance.o
+	$(CXX) $(LDFLAGS) -o $@ $^ $(LDLIBS)
+
 ## make main .o files
 $(OBJ)/central.o: $(SRC)/central.cpp $(INCLUDE)/circle.h
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
 $(OBJ)/area.o: $(SRC)/area.cpp $(INCLUDE)/circle.h
+	$(CXX) $(CXXFLAGS) -o $@ -c $<
+
+$(OBJ)/distance.o: $(SRC)/distance.cpp $(INCLUDE)/point.h
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
 ## create the library

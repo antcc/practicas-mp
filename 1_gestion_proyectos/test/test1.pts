@@ -1,0 +1,6 @@
+# Example file to test distance.cpp
+
+(0,0) (1,1)   (5,1) # This is an inline comment
+(5,5)
+# End of file
+

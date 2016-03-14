@@ -21,10 +21,26 @@ Circle ReadCircle ()
   return c;
 }
 
+bool ReadCircle ( istream& is, Circle& c )
+{
+  char f;
+
+  is >> c.radius >> f;
+  
+  return ReadPoint( is, c.center );
+}
+
 void WriteCircle ( const Circle& c )
 {
   cout << c.radius << "-";
   WritePoint( c.center );
+}
+
+bool WriteCircle ( ostream& os, const Circle& c )
+{
+  os << c.radius << "-";
+
+  return WritePoint ( os, c.center );
 }
 
 void InitCircle ( Circle& c, Point center, double radius )

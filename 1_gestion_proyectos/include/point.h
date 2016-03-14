@@ -19,11 +19,32 @@ struct Point {
 // Funciones para manejar puntos
 // --------------------------------------------
 
-/// Lee un punto en el formato (x,y), incluyendo la lectura de '(' ',' y ')'
+/**
+  * @brief Lee un punto desde la entrada estándar, en el formato (x,y), incluyendo la lectura de '(' ',' y ')'
+  * @deprecated Se aconseja el uso de la función con un parámetro (ver siguiente)
+  */
 Point ReadPoint ();
 
-/// Escribe un punto en formato (x,y), incluyendo la escritura de '(' ',' y ')'
+/**
+  * @brief Lee un punto desde un flujo de entrada
+  * @param Flujo de entrada de datos (is), punto a leer (p)
+  * @prec El formato debe ser (x,y)
+  * @return Devuelve si ha tenido éxito la lectura
+  */
+bool ReadPoint ( std::istream& is, Point& p );
+
+/**
+  * @brief Escribe un punto a la salida estándar, en formato (x,y), incluyendo la escritura de '(' ',' y ')'
+  * @deprecated Se aconseja el uso de la función con dos parámetros (ver siguiente)
+  */
 void WritePoint ( const Point& p );
+
+/**
+  * @brief Escribe un punto a un flujo de salida, en el mismo formato (x,y)
+  * @param Flujo de salida de datos (os), punto a escribir (p)
+  * @return Devuelve si ha tenido éxito la escritura
+  */
+bool WritePoint ( std::ostream& os, const Point& p );
 
 /// Inicializa un punto con dos valores cx cy
 void InitPoint ( Point& p, double cx, double cy );
