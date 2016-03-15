@@ -17,7 +17,8 @@ int main()
 {
   Circle c1,c2;
 
-  do {
+  do
+  {
    cout << "Introduzca un circulo en formato radio-(x,y): ";
    c1 = ReadCircle();
    cout << "Introduzca otro circulo: ";
