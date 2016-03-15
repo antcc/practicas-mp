@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lowerleft',['LowerLeft',['../rectangle_8h.html#a0639fca0d8282467c4689d5ea1c796c4',1,'LowerLeft(const Rectangle &amp;r):&#160;rectangle.cpp'],['../rectangle_8cpp.html#a0639fca0d8282467c4689d5ea1c796c4',1,'LowerLeft(const Rectangle &amp;r):&#160;rectangle.cpp']]]
+  ['middlepoint',['MiddlePoint',['../point_8h.html#af3ac526fa27e2d33a059cf1d02bbd383',1,'MiddlePoint(const Point &amp;p1, const Point &amp;p2):&#160;point.cpp'],['../point_8cpp.html#af3ac526fa27e2d33a059cf1d02bbd383',1,'MiddlePoint(const Point &amp;p1, const Point &amp;p2):&#160;point.cpp']]]
 ];

@@ -33,9 +33,7 @@ bool ReadRectangle( istream& is, Rectangle& r )
   bool success = ReadPoint( is, p ) && ( is >> c ) && ( c == '-' ) && ReadPoint( is, q );
 
   if( success )
-  {
     InitRectangle( r, p, q ); // Esta función se encarga de ponerlo en el orden correcto
-  }
 
   return success;
 }
@@ -83,7 +81,9 @@ Point GetUpperRight( const Rectangle& r )
 
 double Area( const Rectangle& r )
 {
-  return ( r.ur_corner.x - r.ll_corner.x ) * ( r.ur_corner.y - r.ll_corner.y );
+  double area = ( r.ur_corner.x - r.ll_corner.x ) * ( r.ur_corner.y - r.ll_corner.y );
+
+  return area;
 }
 
 bool IsWithin( const Point& p, const Rectangle& r )
