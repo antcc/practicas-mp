@@ -33,33 +33,32 @@ void EraseComment ( istream& is, char delim )
   */
 Rectangle BoundingBox ( istream& is )
 {
-  double min_x, max_x, min_y, max_y;
-  Point p;
+  Point p, p_min, p_max;
   Rectangle bounding;
   const char DELIM = '#';
 
   // También podríamos inicializarlas a las coordenadas del primer punto leído
-  min_x = min_y = numeric_limits<double>::max();
-  max_x = max_y = numeric_limits<double>::min();
+  p_min.x = p_min.y = numeric_limits<double>::max();
+  p_max.x = p_max.y = numeric_limits<double>::min();
 
   EraseComment( is, DELIM );
 
   while( ReadPoint( is, p ) )
   {
     if( p.x < min_x )
-      min_x = p.x;
+      p_min.x = p.x;
     else if( p.x > max_x )
-      max_x = p.x;
+      p_max.x = p.x;
 
     if( p.y < min_y )
-      min_y = p.y;
+      p_min.y = p.y;
     else if( p.y > max_y )
-      max_y = p.y;
+      p_max.y = p.y;
 
     EraseComment( is, DELIM );
   }
 
-  InitRectangle( bounding, InitPoint( min_x, min_y ), InitPoint( max_x, max_y ) );
+  InitRectangle( bounding, p_min, p_max );
 
   return bounding;
 }
