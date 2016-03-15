@@ -23,10 +23,16 @@ Point ReadPoint()
 bool ReadPoint ( istream& is, Point& p )
 {
   char c;
+  double x,y;
+  bool success;
 
-  is >> c >> p.x >> c >> p.y >> c;
+  success = ( is >> c ) && ( c == '(' ) && ( is >> x ) && ( is >> c ) && ( c == ',')
+               && ( is >> y ) && ( is >> c ) && ( c == ')' );
 
-  return is;
+  if ( success )
+    InitPoint( p, x, y );
+
+  return success;
 }
 
 void WritePoint ( const Point& p )
@@ -36,7 +42,6 @@ void WritePoint ( const Point& p )
 
 bool WritePoint ( ostream& os, const Point& p )
 {
-
   os << "(" << p.x << "," << p.y << ")";
 
   return os;
@@ -46,6 +51,16 @@ void InitPoint ( Point& p, double cx, double cy )
 {
   p.x = cx;
   p.y = cy;
+}
+
+Point InitPoint ( double cx, double cy )
+{
+  Point p;
+
+  p.x = cx;
+  p.y = cy;
+
+  return p;
 }
 
 double GetX ( const Point& p )

@@ -24,10 +24,16 @@ Circle ReadCircle ()
 bool ReadCircle ( istream& is, Circle& c )
 {
   char f;
+  double r;
+  Point p;
+  bool success;
 
-  is >> c.radius >> f;
-  
-  return ReadPoint( is, c.center );
+  success = ( is >> r >> f ) && ( f == '-' ) && ReadPoint( is, p );
+
+  if ( success )
+    InitCircle( c, p, r );
+
+  return success;
 }
 
 void WriteCircle ( const Circle& c )
@@ -43,7 +49,7 @@ bool WriteCircle ( ostream& os, const Circle& c )
   return WritePoint ( os, c.center );
 }
 
-void InitCircle ( Circle& c, Point center, double radius )
+void InitCircle ( Circle& c, const Point& center, double radius )
 {
   c.radius = radius;
   c.center = center;

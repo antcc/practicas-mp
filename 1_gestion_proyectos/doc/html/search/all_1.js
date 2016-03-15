@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['central_2ecpp',['central.cpp',['../central_8cpp.html',1,'']]],
-  ['circle',['Circle',['../structCircle.html',1,'']]],
-  ['circle_2ecpp',['circle.cpp',['../circle_8cpp.html',1,'']]],
-  ['circle_2eh',['circle.h',['../circle_8h.html',1,'']]]
+  ['bounding_5fbox_2ecpp',['bounding_box.cpp',['../bounding__box_8cpp.html',1,'']]],
+  ['boundingbox',['BoundingBox',['../bounding__box_8cpp.html#a8948afeced840027e6f220e5e2b2909a',1,'bounding_box.cpp']]]
 ];

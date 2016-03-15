@@ -12,14 +12,14 @@ using namespace std;
 
 /**
   * @brief Elimina comentarios de un archivo de cara a una posterior lectura del contenido
-  * @pre Los comentarios comienzan con '#' y acaban al final de línea
+  * @pre Los comentarios comienzan con "delim" y acaban al final de línea
   */
-void EraseComment ( istream& is )
+void EraseComment ( istream& is, char delim )
 {
-  // Avanzamos hasta encontrar algo distinto a un blanco o el carácter '#'
-  while ( isspace( is.peek() ) || is.peek() == '#' )
+  // Avanzamos hasta encontrar algo distinto a un blanco o el carácter "delim"
+  while ( isspace( is.peek() ) || is.peek() == delim )
   {
-    if (is.peek() == '#')
+    if ( is.peek() == delim )
       is.ignore( 1024, '\n' );  // Suponemos que las líneas tienen menos de 1024 caracteres
     else
       is.ignore();
@@ -33,19 +33,20 @@ void EraseComment ( istream& is )
   */
 double TotalDistance ( istream& is )
 {
-  double distance;
+  double distance = 0;
+  const char DELIM = '#';
   Point p[2];
 
   // Leemos el primer punto, eliminando comentarios
-  EraseComment( is );
+  EraseComment( is, DELIM );
   ReadPoint( is, p[0] );
-  EraseComment ( is );
+  EraseComment( is, DELIM );
 
   while ( ReadPoint( is, p[1] ) )
   {
-    distance += Distance (p[0], p[1]);
+    distance += Distance( p[0], p[1] );
     p[0] = p[1];
-    EraseComment( is );
+    EraseComment( is, DELIM );
   }
 
   return distance;
@@ -56,14 +57,14 @@ int main( int argc, char* argv[] )
   double total_distance;
   bool input_finished;
 
-  if (argc == 1){ // Si no se ha introducido el nombre del archivo como parámetro
+  if ( argc == 1 ){ // Si no se ha introducido el nombre del archivo como parámetro
     total_distance = TotalDistance( cin );
     input_finished = cin.eof();   // Comprueba si se ha leído hasta el final
   }
   else {
-    ifstream f(argv[1]);
+    ifstream f( argv[1] );
 
-    if (!f) {
+    if ( !f ) {
       cerr << "No se puede abrir el archivo " << argv[1] << endl;
       return 1;   // Forzamos el cierre, devolviendo al sistema un error
     }
@@ -72,7 +73,7 @@ int main( int argc, char* argv[] )
     input_finished = f.eof();
   }
 
-  if (!input_finished) {
+  if ( !input_finished ) {
     cerr << "Error inesperado: no se han podido leer todos los datos." << endl;
     return 1;
   }
