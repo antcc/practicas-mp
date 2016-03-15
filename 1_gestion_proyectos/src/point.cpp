@@ -7,7 +7,6 @@
 #include <iostream>
 #include <cmath> // sqrt
 #include "point.h"
-
 using namespace std;
 
 Point ReadPoint()
@@ -20,14 +19,12 @@ Point ReadPoint()
   return p;
 }
 
-bool ReadPoint ( istream& is, Point& p )
+bool ReadPoint( istream& is, Point& p )
 {
   char c;
   double x,y;
-  bool success;
-
-  success = ( is >> c ) && ( c == '(' ) && ( is >> x ) && ( is >> c ) && ( c == ',')
-               && ( is >> y ) && ( is >> c ) && ( c == ')' );
+  bool success = ( is >> c ) && ( c == '(' ) && ( is >> x ) && ( is >> c ) && ( c == ',')
+                && ( is >> y ) && ( is >> c ) && ( c == ')' );
 
   if ( success )
     InitPoint( p, x, y );
@@ -35,25 +32,25 @@ bool ReadPoint ( istream& is, Point& p )
   return success;
 }
 
-void WritePoint ( const Point& p )
+void WritePoint( const Point& p )
 {
   cout << "(" << p.x << "," << p.y << ")";
 }
 
-bool WritePoint ( ostream& os, const Point& p )
+bool WritePoint( ostream& os, const Point& p )
 {
   os << "(" << p.x << "," << p.y << ")";
 
   return os;
 }
 
-void InitPoint ( Point& p, double cx, double cy )
+void InitPoint( Point& p, double cx, double cy )
 {
   p.x = cx;
   p.y = cy;
 }
 
-Point InitPoint ( double cx, double cy )
+Point InitPoint( double cx, double cy )
 {
   Point p;
 
@@ -63,17 +60,17 @@ Point InitPoint ( double cx, double cy )
   return p;
 }
 
-double GetX ( const Point& p )
+double GetX( const Point& p )
 {
   return p.x;
 }
 
-double GetY ( const Point& p )
+double GetY( const Point& p )
 {
   return p.y;
 }
 
-double Distance ( const Point& p1, const Point& p2 )
+double Distance( const Point& p1, const Point& p2 )
 {
   double d1 = p1.x - p2.x;
   double d2 = p1.y - p2.y;
@@ -81,7 +78,7 @@ double Distance ( const Point& p1, const Point& p2 )
   return sqrt( d1 * d1 + d2 * d2 );
 }
 
-Point MiddlePoint ( const Point& p1, const Point& p2 )
+Point MiddlePoint( const Point& p1, const Point& p2 )
 {
   double x = ( p1.x + p2.x ) / 2;
   double y = ( p1.y + p2.y ) / 2;
