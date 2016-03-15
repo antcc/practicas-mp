@@ -7,10 +7,9 @@
 #include <iostream>
 #include <cmath> // M_PI
 #include "circle.h"
-
 using namespace std;
 
-Circle ReadCircle ()
+Circle ReadCircle()
 {
   Circle c;
   char f;
@@ -21,39 +20,59 @@ Circle ReadCircle ()
   return c;
 }
 
-void WriteCircle ( const Circle& c )
+bool ReadCircle( istream& is, Circle& c )
+{
+  char f;
+  double r;
+  Point p;
+  bool success = ( is >> r >> f ) && ( f == '-' ) && ReadPoint( is, p );
+
+  if( success )
+    InitCircle( c, p, r );
+
+  return success;
+}
+
+void WriteCircle( const Circle& c )
 {
   cout << c.radius << "-";
   WritePoint( c.center );
 }
 
-void InitCircle ( Circle& c, Point center, double radius )
+bool WriteCircle( ostream& os, const Circle& c )
+{
+  os << c.radius << "-";
+
+  return WritePoint( os, c.center );
+}
+
+void InitCircle( Circle& c, const Point& center, double radius )
 {
   c.radius = radius;
   c.center = center;
 }
 
-Point GetCenter ( const Circle& c )
+Point GetCenter( const Circle& c )
 {
   return c.center;
 }
 
-double GetRadius ( const Circle& c )
+double GetRadius( const Circle& c )
 {
   return c.radius;
 }
 
-double Area ( const Circle& c )
+double Area( const Circle& c )
 {
   return c.radius * c.radius * M_PI;
 }
 
-bool IsWithin ( const Point& p, const Circle& c )
+bool IsWithin( const Point& p, const Circle& c )
 {
   return Distance( p, c.center ) < c.radius;
 }
 
-double Distance ( const Circle& c1, const Circle& c2 )
+double Distance( const Circle& c1, const Circle& c2 )
 {
   return Distance( c1.center, c2.center ) - ( c1.radius + c2.radius );
 }

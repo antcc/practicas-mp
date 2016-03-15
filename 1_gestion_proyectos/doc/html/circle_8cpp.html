@@ -39,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
       <li><a href="annotated.html"><span>Clases</span></a></li>
       <li class="current"><a href="files.html"><span>Archivos</span></a></li>
       <li>
@@ -100,18 +101,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Funciones</h2></td></tr>
-<tr class="memitem:a0c4e7c2412341bae05a98ecf01496c3a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0c4e7c2412341bae05a98ecf01496c3a"></a>
-<a class="el" href="structCircle.html">Circle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circle_8cpp.html#a0c4e7c2412341bae05a98ecf01496c3a">ReadCircle</a> ()</td></tr>
-<tr class="memdesc:a0c4e7c2412341bae05a98ecf01496c3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lee círculo en formato radio-centro, incluyendo '-' y leyendo "centro" con ReadPoint. <br /></td></tr>
+<tr class="memitem:a0c4e7c2412341bae05a98ecf01496c3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCircle.html">Circle</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circle_8cpp.html#a0c4e7c2412341bae05a98ecf01496c3a">ReadCircle</a> ()</td></tr>
+<tr class="memdesc:a0c4e7c2412341bae05a98ecf01496c3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lee círculo desde la entrada estándar, en formato radio-centro, incluyendo '-' y leyendo "centro" con ReadPoint.  <a href="#a0c4e7c2412341bae05a98ecf01496c3a">Más...</a><br /></td></tr>
 <tr class="separator:a0c4e7c2412341bae05a98ecf01496c3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada6a67513bb61187013c8dcd4e53d9b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ada6a67513bb61187013c8dcd4e53d9b3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circle_8cpp.html#ada6a67513bb61187013c8dcd4e53d9b3">WriteCircle</a> (const <a class="el" href="structCircle.html">Circle</a> &amp;c)</td></tr>
-<tr class="memdesc:ada6a67513bb61187013c8dcd4e53d9b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Escribe círculo en formato radio-centro, incluyendo '-' y escribiendo "centro" con WritePoint. <br /></td></tr>
+<tr class="memitem:aefc8efc151eea2a5be2c7958e6a6a680"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aefc8efc151eea2a5be2c7958e6a6a680"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>ReadCircle</b> (istream &amp;is, <a class="el" href="structCircle.html">Circle</a> &amp;c)</td></tr>
+<tr class="separator:aefc8efc151eea2a5be2c7958e6a6a680"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada6a67513bb61187013c8dcd4e53d9b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circle_8cpp.html#ada6a67513bb61187013c8dcd4e53d9b3">WriteCircle</a> (const <a class="el" href="structCircle.html">Circle</a> &amp;c)</td></tr>
+<tr class="memdesc:ada6a67513bb61187013c8dcd4e53d9b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Escribe círculo a la salida estándar, en formato radio-centro, incluyendo '-' y escribiendo "centro" con WritePoint.  <a href="#ada6a67513bb61187013c8dcd4e53d9b3">Más...</a><br /></td></tr>
 <tr class="separator:ada6a67513bb61187013c8dcd4e53d9b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33464eb3b0e63a9d1dff8ba795480f96"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a33464eb3b0e63a9d1dff8ba795480f96"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circle_8cpp.html#a33464eb3b0e63a9d1dff8ba795480f96">InitCircle</a> (<a class="el" href="structCircle.html">Circle</a> &amp;c, <a class="el" href="structPoint.html">Point</a> center, double radius)</td></tr>
-<tr class="memdesc:a33464eb3b0e63a9d1dff8ba795480f96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa circulo c con centro y radio. <br /></td></tr>
-<tr class="separator:a33464eb3b0e63a9d1dff8ba795480f96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82b0a8e2fd63d49d8297310d19b8079b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82b0a8e2fd63d49d8297310d19b8079b"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>WriteCircle</b> (ostream &amp;os, const <a class="el" href="structCircle.html">Circle</a> &amp;c)</td></tr>
+<tr class="separator:a82b0a8e2fd63d49d8297310d19b8079b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89623fc3a2ecc12ec567a9d2355abcb2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a89623fc3a2ecc12ec567a9d2355abcb2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circle_8cpp.html#a89623fc3a2ecc12ec567a9d2355abcb2">InitCircle</a> (<a class="el" href="structCircle.html">Circle</a> &amp;c, const <a class="el" href="structPoint.html">Point</a> &amp;center, double radius)</td></tr>
+<tr class="memdesc:a89623fc3a2ecc12ec567a9d2355abcb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicializa circulo c con centro y radio. <br /></td></tr>
+<tr class="separator:a89623fc3a2ecc12ec567a9d2355abcb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7cf43b053d81c5e61c982e9fdefb6e3c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7cf43b053d81c5e61c982e9fdefb6e3c"></a>
 <a class="el" href="structPoint.html">Point</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="circle_8cpp.html#a7cf43b053d81c5e61c982e9fdefb6e3c">GetCenter</a> (const <a class="el" href="structCircle.html">Circle</a> &amp;c)</td></tr>
 <tr class="memdesc:a7cf43b053d81c5e61c982e9fdefb6e3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Devuelve el centro de c. <br /></td></tr>
@@ -136,7 +141,45 @@ double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ci
 <a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
 <div class="textblock"><p>Implementación de las funciones que manejan círculos. </p>
 <dl class="section author"><dt>Autor</dt><dd>Miguel Lentisco &amp; Antonio Coín </dd></dl>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Documentación de las funciones</h2>
+<a class="anchor" id="a0c4e7c2412341bae05a98ecf01496c3a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCircle.html">Circle</a> ReadCircle </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lee círculo desde la entrada estándar, en formato radio-centro, incluyendo '-' y leyendo "centro" con ReadPoint. </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">Obsoleto:</a></b></dt><dd>Se aconseja el uso de la función con un parámetro </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ada6a67513bb61187013c8dcd4e53d9b3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void WriteCircle </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structCircle.html">Circle</a> &amp;&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Escribe círculo a la salida estándar, en formato radio-centro, incluyendo '-' y escribiendo "centro" con WritePoint. </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000002">Obsoleto:</a></b></dt><dd>Se aconseja el uso de la función con dos parámetros </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generado por &#160;<a href="http://www.doxygen.org/index.html">

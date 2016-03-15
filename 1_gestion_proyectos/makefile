@@ -1,11 +1,10 @@
-# Name: 	   makefile
+# Name: 	     makefile
 # Author: 	   Miguel Lentisco & Antonio Coín
 # Description: keep dependencies between files for separate compilation
 
-# Project-specific variables
+# Project-specific macros
 PROJECTNAME = makes
 LIBNAME = shapes
-SOURCESMAIN = central.cpp area.cpp
 DOCNAME = documentation.html
 
 # Compiler settings
@@ -27,7 +26,7 @@ DOC = doc
 
 .PHONY: all clean mrproper distribute docs
 
-all: $(LIB)/lib$(LIBNAME).a $(addprefix $(BIN)/, central area)
+all: $(LIB)/lib$(LIBNAME).a $(addprefix $(BIN)/, central area distance bounding_box)
 
 ## make the executables files
 $(BIN)/central: $(OBJ)/central.o
@@ -36,15 +35,27 @@ $(BIN)/central: $(OBJ)/central.o
 $(BIN)/area: $(OBJ)/area.o
 	$(CXX) $(LDFLAGS) -o $@ $^ $(LDLIBS)
 
-## make main .o files
+$(BIN)/distance: $(OBJ)/distance.o
+	$(CXX) $(LDFLAGS) -o $@ $^ $(LDLIBS)
+
+$(BIN)/bounding_box: $(OBJ)/bounding_box.o
+	$(CXX) $(LDFLAGS) -o $@ $^ $(LDLIBS)
+
+## make .o files for executables
 $(OBJ)/central.o: $(SRC)/central.cpp $(INCLUDE)/circle.h
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
 $(OBJ)/area.o: $(SRC)/area.cpp $(INCLUDE)/circle.h
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
+$(OBJ)/distance.o: $(SRC)/distance.cpp $(INCLUDE)/point.h
+	$(CXX) $(CXXFLAGS) -o $@ -c $<
+
+$(OBJ)/bounding_box.o: $(SRC)/bounding_box.cpp $(INCLUDE)/point.h
+	$(CXX) $(CXXFLAGS) -o $@ -c $<
+
 ## create the library
-$(LIB)/lib$(LIBNAME).a: $(addprefix $(OBJ)/, circle.o point.o)
+$(LIB)/lib$(LIBNAME).a: $(addprefix $(OBJ)/, circle.o point.o rectangle.o)
 	$(AR) rvs $@ $^
 
 ## pattern rule for making .o files for the library
@@ -54,7 +65,7 @@ $(OBJ)/%.o: $(SRC)/%.cpp $(INCLUDE)/%.h
 docs:
 	@doxygen doc/Doxyfile
 	@rm -f doc/$(DOCNAME)
-	-@ln -s html/files.html doc/$(DOCNAME)	
+	-@ln -s html/files.html doc/$(DOCNAME)
 	@echo "--- Documentación creada en la carpeta doc ---"
 
 tar: clean
