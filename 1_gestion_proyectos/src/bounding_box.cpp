@@ -45,14 +45,14 @@ Rectangle BoundingBox ( istream& is )
 
   while( ReadPoint( is, p ) )
   {
-    if( p.x < min_x )
+    if( p.x < p_min.x )
       p_min.x = p.x;
-    else if( p.x > max_x )
+    else if( p.x > p_max.x )
       p_max.x = p.x;
 
-    if( p.y < min_y )
+    if( p.y < p_min.y )
       p_min.y = p.y;
-    else if( p.y > max_y )
+    else if( p.y > p_max.y )
       p_max.y = p.y;
 
     EraseComment( is, DELIM );
