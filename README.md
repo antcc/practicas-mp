@@ -2,7 +2,7 @@
 
 Repositorio para las prácticas de la asignatura Metodología de la Programación de la UGR.
 
-Realizadas por @antcc y Miguel Lentisco Ballesteros.
+Realizadas por @antcc y @AlfaOmegaX.
 
 ## index
 
