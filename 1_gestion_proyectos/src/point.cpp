@@ -26,7 +26,7 @@ bool ReadPoint( istream& is, Point& p )
   bool success = ( is >> c ) && ( c == '(' ) && ( is >> x ) && ( is >> c ) && ( c == ',')
                 && ( is >> y ) && ( is >> c ) && ( c == ')' );
 
-  if ( success )
+  if( success )
     InitPoint( p, x, y );
 
   return success;

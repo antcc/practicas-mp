@@ -27,7 +27,7 @@ bool ReadCircle( istream& is, Circle& c )
   Point p;
   bool success = ( is >> r >> f ) && ( f == '-' ) && ReadPoint( is, p );
 
-  if ( success )
+  if( success )
     InitCircle( c, p, r );
 
   return success;

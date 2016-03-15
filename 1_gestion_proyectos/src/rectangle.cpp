@@ -32,7 +32,7 @@ bool ReadRectangle( istream& is, Rectangle& r )
   char c;
   bool success = ReadPoint( is, p ) && ( is >> c ) && ( c == '-' ) && ReadPoint( is, q );
 
-  if ( success )
+  if( success )
   {
     InitRectangle( r, p, q ); // Esta función se encarga de ponerlo en el orden correcto
   }
