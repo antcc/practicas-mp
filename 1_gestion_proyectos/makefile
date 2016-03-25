@@ -1,4 +1,4 @@
-# Name: 	     makefile
+# Name: 	   makefile
 # Author: 	   Miguel Lentisco & Antonio Coín
 # Description: keep dependencies between files for separate compilation
 
@@ -24,7 +24,7 @@ DOC = doc
 
 # --- Rules ---
 
-.PHONY: all clean mrproper distribute docs
+.PHONY: all clean mrproper tar docs
 
 all: $(LIB)/lib$(LIBNAME).a $(addprefix $(BIN)/, central area distance bounding_box)
 
