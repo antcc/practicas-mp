@@ -18,8 +18,9 @@
   * @see Ocultar
   * @see Revelar
   */
-enum TipoError {ERR_NINGUNO,  ///< La operación ha tenido éxito
-                ERR_TAMANIO  ///< El mensaje no cabe en la imagen
+enum TipoError {ERR_NINGUNO,    ///< La operación ha tenido éxito
+                ERR_TAMANIO,    ///< El mensaje no cabe en la imagen, o en la cadena
+                ERR_TERMINADOR  ///< El mensaje oculto no termina en el carácter '\0'
                };
 
 /**
@@ -29,7 +30,7 @@ enum TipoError {ERR_NINGUNO,  ///< La operación ha tenido éxito
   * @param n Tamaño del vector anterior @a (img)
   * @param mensaje Cadena de caracteres que representa un mensaje a ocultar
   * @return Devuelve un valor de @a TipoError, indicando si ha habido algún error
-  * al ocultar el mensaje, en cuyo caso se especifica de qué tipo ha sido.
+  * al ocultar el mensaje, y de qué tipo ha sido.
   *
   * @pre La cadena @a mensaje debe terminar con el carácter '\0'
   */
@@ -41,10 +42,12 @@ TipoError Ocultar (unsigned char img[], int n, const char mensaje[]);
   * @param img Vector de bytes que corresponden a los valores de los píxeles de la imagen
   * @param n Tamaño del vector anterior @a (img)
   * @param mensaje Parámetro de salida con el mensaje revelado (cadena de caracteres)
+  * @param l Tamaño de la cadena @a mensaje
   * @return Devuelve un valor de @a TipoError, indicando si ha habido algún error
-  * al revelar el mensaje, en cuyo caso se especifica de qué tipo ha sido.
+  * al revelar el mensaje, y de qué tipo ha sido.
+  *
   */
-TipoError Revelar (const unsigned char img[], int n, char mensaje[]);
+TipoError Revelar (const unsigned char img[], int n, char mensaje[], int l);
 
 #endif
 

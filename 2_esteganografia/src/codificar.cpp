@@ -16,8 +16,7 @@ namespace {
 
   int Longitud (const char c[])
   {
-    int l = 0;
-    int i = 0;
+    int i = 0, l = 0;
 
     while (c[i++]) l++;
 
@@ -37,7 +36,7 @@ TipoError Ocultar (unsigned char img[], int n, const char mensaje[])
       for (int j = 0; j < BYTE; ++j) {
         int aux = 1 << j;
 
-        if (!((aux & mensaje[i]) == (aux & img[i]))) {
+        if (!((aux & mensaje[i]) == (aux & img[i]))) {  // No coinciden
           img[i] = aux & mensaje[i] ? aux | img[i] : ~aux & img[i];
         }
       }
@@ -51,22 +50,28 @@ TipoError Ocultar (unsigned char img[], int n, const char mensaje[])
 
 // ________________________________________________________________________
 
-TipoError Revelar (const unsigned char img[], int n, char mensaje[])
+TipoError Revelar (const unsigned char img[], int n, char mensaje[], int l)
 {
   TipoError error = ERR_NINGUNO;
   char letra = 1;
-  int i;
 
-  for (i = 0; i < n && letra != 0; i++) {
+  int i = 0;
+  while (i < n && letra != 0 && i < l) {
     letra = 0;
+
     for (int j = 0; j < BYTE; j++) {
       int aux = 1 << j;
       if (img[i] & aux)
         letra = aux | letra;
     }
 
-    mensaje[i] = letra;
+    mensaje[i++] = letra;
   }
+
+  if (i == l && letra)
+    error = ERR_TAMANIO;
+  else if (!letra)
+    error = ERR_TERMINADOR;
 
   return error;
 }
