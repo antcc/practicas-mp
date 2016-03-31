@@ -6,6 +6,7 @@
   *   > Introduzca la imagen de salida: salida
   *   > Introduzca el mensaje: ¡Hola mundo!
   *   > Ocultando...
+  *   > Mensaje ocultado correctamente.
   *
   */
 
@@ -14,17 +15,34 @@
 #include "codificar.h"
 using namespace std;
 
+/// Devuelve la longitud de la cadena @a c
+int Longitud (const char c[])
+{
+  int i = 0, l = 0;
+
+  while (c[i++]) l++;
+
+  return l;
+}
+
+/// Añade la cadena @a c2 al final de la cadena @a c1
+void Concatenar (char c1[], const char c2[])
+{
+
+}
+
 int main() {
   const int MAXNOMBRE = 100;
   const int MAXBUFFER = 1000000;
   const int MAXMENSAJE = 125000;
+  const int TAMANIO_EXT = 4;
 
   unsigned char buffer[MAXBUFFER];
   char original[MAXNOMBRE];
   char salida[MAXNOMBRE];
   char mensaje[MAXMENSAJE];
   int f,c,n;
-  TipoImagen tipo;
+  TipoImagen img;
   TipoError error;
 
   cout << "Introduzca el nombre de la imagen original: ";
@@ -34,31 +52,35 @@ int main() {
   cout << "Introduzca el mensaje a codificar: ";
   cin.getline(mensaje, MAXMENSAJE);
 
-  tipo = LeerTipoImagen(original, f, c);
+  img = LeerTipoImagen(original, f, c);
 
-  if (tipo == IMG_PPM) {
+  if (img == IMG_PPM) {
     if(!LeerImagenPPM(original, f, c, buffer)) {
       cerr << "Falló la lecura." << endl;
       return 1;
     }
   }
-  else if (tipo == IMG_PGM) {
+  else if (img == IMG_PGM) {
     if(!LeerImagenPGM(original, f, c, buffer)) {
       cerr << "Falló la lecura." << endl;
       return 1;
     }
   }
   else {
-    cerr << "Tipo de imagen no soportado" << endl;
+    cerr << "img de imagen no soportado." << endl;
     return 1;
   }
 
   // Ocultar el mensaje
-  n = tipo == IMG_PGM ? f*c : f*c*3;
+  n = img == IMG_PGM ? f*c : f*c*3;
   error = Ocultar (buffer, n, mensaje);
 
   if (error == ERR_NINGUNO) {
-    bool exito = tipo == IMG_PGM ? EscribirImagenPGM(salida, buffer, f, c)
+    // Añadir la extensión correspondiente
+    const char extension[TAMANIO_EXT + 1] = {'.','p','p','m','\0'};
+    //Concatenar(salida, extension);
+
+    bool exito = img == IMG_PGM ? EscribirImagenPGM(salida, buffer, f, c)
                                  : EscribirImagenPPM(salida, buffer, f, c);
 
     if (exito)
