@@ -32,12 +32,11 @@ TipoError Ocultar (unsigned char img[], int n, const char mensaje[])
   int l = Longitud(mensaje);
 
   if (BYTE * l <= n) {
-    for (int i = 0; i < l; ++i) {
-      for (int j = 0; j < BYTE; ++j) {
-        int aux = 1 << j;
+    for (int i = 0; i < l; i++) {
+      for (int j = BYTE - 1; j >= 0; j--) {
+        int pos = BYTE*i + (BYTE - j - 1);
 
-        if (!((aux & mensaje[i]) == (aux & img[i])))  // No coinciden
-          img[i] = aux & mensaje[i] ? aux | img[i] : ~aux & img[i];
+        img[pos] = (1 << j) & mensaje[i] ? 1 | img[pos] : ~1 & img[pos];
       }
     }
   }
@@ -58,13 +57,15 @@ TipoError Revelar (const unsigned char img[], int n, char mensaje[], int l)
   while (i < n && letra && i < l) {
     letra = 0;
 
-    for (int j = 0; j < BYTE; ++j) {
-      int aux = 1 << j;
-      if (img[i] & aux)
-        letra = aux | letra;
+    for (int j = BYTE - 1; j >= 0; j--) {
+      int pos = BYTE*i + (BYTE - j - 1);
+
+      if (img[pos] & 1)
+        letra = (1 << j) | letra;
     }
 
-    mensaje[i++] = letra;
+    mensaje[i] = letra;
+    i++;
   }
 
   if (i == l && letra)

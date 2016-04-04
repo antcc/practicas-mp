@@ -11,31 +11,15 @@
   */
 
 #include <iostream>
+#include <cstring>
 #include "imagenES.h"
 #include "codificar.h"
 using namespace std;
-
-/// Devuelve la longitud de la cadena @a c
-int Longitud (const char c[])
-{
-  int i = 0, l = 0;
-
-  while (c[i++]) l++;
-
-  return l;
-}
-
-/// Añade la cadena @a c2 al final de la cadena @a c1
-void Concatenar (char c1[], const char c2[])
-{
-
-}
 
 int main() {
   const int MAXNOMBRE = 100;
   const int MAXBUFFER = 1000000;
   const int MAXMENSAJE = 125000;
-  const int TAMANIO_EXT = 4;
 
   unsigned char buffer[MAXBUFFER];
   char original[MAXNOMBRE];
@@ -67,21 +51,21 @@ int main() {
     }
   }
   else {
-    cerr << "img de imagen no soportado." << endl;
+    cerr << "Tipo de imagen no soportado." << endl;
     return 1;
   }
 
   // Ocultar el mensaje
   n = img == IMG_PGM ? f*c : f*c*3;
   error = Ocultar (buffer, n, mensaje);
+  cout << "Ocultando...\n";
 
   if (error == ERR_NINGUNO) {
     // Añadir la extensión correspondiente
-    const char extension[TAMANIO_EXT + 1] = {'.','p','p','m','\0'};
-    //Concatenar(salida, extension);
+    img == IMG_PPM ? strcat(salida, ".ppm") : strcat(salida, ".pgm");
 
     bool exito = img == IMG_PGM ? EscribirImagenPGM(salida, buffer, f, c)
-                                 : EscribirImagenPPM(salida, buffer, f, c);
+                                : EscribirImagenPPM(salida, buffer, f, c);
 
     if (exito)
       cout << "Mensaje ocultado correctamente." << endl;

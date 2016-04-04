@@ -1,4 +1,4 @@
-/** @file ocultar.cpp
+/** @file revelar.cpp
   * @brief Programa para revelar un mensaje oculto en una imagen PPM o PGM
   *
   * Un ejemplo de ejecución es:

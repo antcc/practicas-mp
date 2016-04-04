@@ -19,7 +19,7 @@ LDLIBS = -l$(LIBNAME)
 
 .PHONY: all docs tar clean mrproper
 
-all: $(BIN)/ocultar $(BIN)/revelar docs
+all: $(BIN)/ocultar $(BIN)/revelar
 
 # ************ Generación de ejecutables *************
 $(BIN)/%: $(OBJ)/%.o $(LIB)/lib$(LIBNAME).a
