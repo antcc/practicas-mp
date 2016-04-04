@@ -6,6 +6,7 @@
 
 #include "matriz_operaciones.h"
 #include <iosfwd> // istream,ostream
+#include <fstream>
 using namespace std;
 
 bool Leer (istream& is, MatrizBit& m)
@@ -36,7 +37,7 @@ bool Escribir (ostream& os, const MatrizBit& m)
   const int FILAS = GetFilas(m);
   const int COLUMNAS = GetColumnas(m);
 
-  os << FILAS << << " " << COLUMNAS << "\n";
+  os << FILAS << " " << COLUMNAS << "\n";
 
   for (int i = 0; i < FILAS; i++)
   {
@@ -93,7 +94,7 @@ void And (MatrizBit& res, const MatrizBit& m1, const MatrizBit& m2)
 
   for (int i = 0; i < FILAS; i++)
   {
-    for (int j = 0; j < COLUMNASL; j++)
+    for (int j = 0; j < COLUMNAS; j++)
     {
       SetElemento(res, i, j, GetElemento(m1, i, j) && GetElemento(m2, i, j));
     }

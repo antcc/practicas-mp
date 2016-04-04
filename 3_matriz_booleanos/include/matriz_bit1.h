@@ -10,8 +10,8 @@
 /// Estructura que representa una matriz de booleanos mediante una matriz-C de 10x10
 struct MatrizBit
 {
-  const int MAX_FILAS = 10;
-  const int MAX_COLUMNAS = 10;
+  static const int MAX_FILAS = 10;
+  static const int MAX_COLUMNAS = 10;
 
   int filas;
   int columnas;
