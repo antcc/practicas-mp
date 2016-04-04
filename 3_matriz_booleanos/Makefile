@@ -1,5 +1,5 @@
 # Nombre del proyecto
-PROJECTNAME = matriz_booleanos
+PROJECTNAME = matrizBooleanos
 
 # Opciones del compilador
 CXX = g++
