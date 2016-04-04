@@ -33,6 +33,12 @@ PROJECT_NAME           = "Esteganografía"
 
 PROJECT_NUMBER         =
 
+# Using the PROJECT_BRIEF tag one can provide an optional one line description
+# for a project that appears at the top of each page and should give viewer a
+# quick idea about the purpose of the project. Keep the description short.
+
+PROJECT_BRIEF          = "Proyecto 2 - MP"
+
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute)
 # base path where the generated documentation will be put.
 # If a relative path is entered, it will be relative to the location
