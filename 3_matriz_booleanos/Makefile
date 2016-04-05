@@ -17,7 +17,6 @@ SOURCES = $(addprefix $(SRC)/, matriz_bit1.cpp matriz_bit2.cpp matriz_bit3.cpp m
 INC = $(addprefix $(INCLUDE)/, matriz_bit.h matriz_operaciones.h)
 INC += $(addprefix $(INCLUDE)/, matriz_bit1.h matriz_bit2.h matriz_bit3.h matriz_bit4.h)
 
-
 .PHONY: docs tar clean
 
 # ************ Generación de ejecutable ************
@@ -37,6 +36,6 @@ tar: clean
 
 # ************ Limpieza ************
 clean:
-	-@rm -f $(BIN)/calcular doc/html/* *.o $(SRC)/*~ $(INC)/*~ *~
+	-@rm -f $(BIN)/calcular doc/html/* *.o $(SRC)/*~ $(INCLUDE)/*~ *~
 	@echo "Limpiando..."
 
