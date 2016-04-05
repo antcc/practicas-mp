@@ -38,8 +38,8 @@ bool Leer (istream& is, MatrizBit& m)
 
           SetElemento(m, i, j, aux);
         }
-        exito = is;
       }
+      exito = is;
     }
   }
 

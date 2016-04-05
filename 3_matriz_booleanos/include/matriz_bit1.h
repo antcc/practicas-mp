@@ -1,13 +1,13 @@
 /**
   * @file matriz_bit1.h
-  * @brief Definición 1 de MatrizBit, mediante una matriz-C
+  * @brief Definición 1 de MatrizBit, mediante una matriz-C de bool
   *
   */
 
 #ifndef _MATRIZ_BIT1_H_
 #define _MATRIZ_BIT1_H_
 
-/// Estructura que representa una matriz de booleanos mediante una matriz-C de 10x10
+/// Estructura que representa una matriz de booleanos
 struct MatrizBit
 {
   static const int MAX_FILAS = 10;
