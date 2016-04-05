@@ -18,12 +18,8 @@ bool Inicializar (MatrizBit& m, int fils, int cols)
     m.columnas = cols;
 
     for (int i = 0; i < fils; i++)
-    {
       for (int j = 0; j < cols; j++)
-      {
         m.matriz[i][j] = 0;
-      }
-    }
   }
 
   return exito;
@@ -55,7 +51,7 @@ bool GetElemento (const MatrizBit& m, int f, int c)
 void SetElemento (MatrizBit& m, int f, int c, bool v)
 {
   if (f <= m.filas && c <= m.columnas && f >= 0 && c >= 0)
-  {
     m.matriz[f][c] = v;
-  }
 }
+
+/* Fin fichero: matriz_bit1.cpp */

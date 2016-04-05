@@ -13,21 +13,37 @@ bool Leer (istream& is, MatrizBit& m)
 {
   int filas;
   int columnas;
+  bool exito;
 
-  is >> filas >> columnas;
-
-  for (int i = 0; i < filas; i++)
+  if(is.peek() == 'X' || is.peek() == '.')
   {
-    for (int j = 0; j < columnas; j++)
-    {
-      bool aux;
-      is >> aux;
+    // Implementar
 
-      SetElemento(m, i, j, aux);
+    exito = is;
+  }
+
+  else
+  {
+    is >> filas >> columnas;
+    exito = is && Inicializar(m, filas, columnas);
+
+    if (exito)
+    {
+      for (int i = 0; i < filas; i++)
+      {
+        for (int j = 0; j < columnas; j++)
+        {
+          bool aux;
+          is >> aux;
+
+          SetElemento(m, i, j, aux);
+        }
+        exito = is;
+      }
     }
   }
 
-  return is;
+  return exito;
 }
 
 //________________________________________________________________
@@ -47,6 +63,7 @@ bool Escribir (ostream& os, const MatrizBit& m)
     }
     os << "\n";
   }
+  os << "\n";
 
   return os;
 }
