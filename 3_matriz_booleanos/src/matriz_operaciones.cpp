@@ -6,6 +6,7 @@
 
 #include "matriz_operaciones.h"
 #include <iosfwd> // istream,ostream
+#include <cstring> //strlen, strcat
 #include <fstream>
 using namespace std;
 
@@ -15,13 +16,41 @@ bool Leer (istream& is, MatrizBit& m)
   int columnas;
   bool exito;
 
+  // Primer formato
   if(is.peek() == 'X' || is.peek() == '.')
   {
-    // Implementar
+    const int MAX_POS = 128;  // caben los 4 tipos de matrices
+    char aux[MAX_POS];
+    char valores[MAX_POS] = {'\0'};
 
-    exito = is;
+    // Lectura anticipada
+    is.getline(aux, MAX_POS);
+    strcat(valores, aux);
+    columnas = strlen(valores); // fijamos las columnas
+
+    filas = 1;
+    while(is.getline(aux, MAX_POS) && strlen(aux) == columnas)
+    {
+      strcat(valores, aux);
+      filas++;
+    }
+
+    ////////////////// CONDICIÓN PARA is /////////////////////////////////
+    exito = Inicializar(m, filas, columnas);
+
+    if (exito)
+    {
+      for (int i = 0; i < filas; i++)
+      {
+        for (int j = 0; j < columnas; j++)
+        {
+          bool v = valores[columnas*i + j] == 'X';
+          SetElemento(m, i, j, v);
+        }
+      }
+    }
   }
-
+  // Segundo formato
   else
   {
     is >> filas >> columnas;
@@ -58,9 +87,8 @@ bool Escribir (ostream& os, const MatrizBit& m)
   for (int i = 0; i < FILAS; i++)
   {
     for (int j = 0; j < COLUMNAS; j++)
-    {
       os << GetElemento(m, i, j) << " ";
-    }
+
     os << "\n";
   }
   os << "\n";
@@ -94,12 +122,8 @@ void Traspuesta (MatrizBit& res, const MatrizBit& m)
   const int COLUMNAS = GetColumnas(m);
 
   for (int i = 0; i < FILAS; i++)
-  {
     for (int j = 0; j < COLUMNAS; j++)
-    {
       SetElemento(res, j, i, GetElemento(m, i, j));
-    }
-  }
 }
 
 //________________________________________________________________
@@ -110,12 +134,8 @@ void And (MatrizBit& res, const MatrizBit& m1, const MatrizBit& m2)
   const int COLUMNAS = GetColumnas(m1);
 
   for (int i = 0; i < FILAS; i++)
-  {
     for (int j = 0; j < COLUMNAS; j++)
-    {
       SetElemento(res, i, j, GetElemento(m1, i, j) && GetElemento(m2, i, j));
-    }
-  }
 }
 
 //________________________________________________________________
@@ -126,12 +146,8 @@ void Or (MatrizBit& res, const MatrizBit& m1, const MatrizBit& m2)
   const int COLUMNAS = GetColumnas(m1);
 
   for (int i = 0; i < FILAS; i++)
-  {
     for (int j = 0; j < COLUMNAS; j++)
-    {
       SetElemento(res, i, j, GetElemento(m1, i, j) || GetElemento(m2, i, j));
-    }
-  }
 }
 
 //________________________________________________________________
@@ -142,12 +158,8 @@ void Not (MatrizBit& res, const MatrizBit& m)
   const int COLUMNAS = GetColumnas(m);
 
   for (int i = 0; i < FILAS; i++)
-  {
     for (int j = 0; j < COLUMNAS; j++)
-    {
       SetElemento(res, i, j, !GetElemento(m, i, j));
-    }
-  }
 }
 
 /* Fin fichero: matriz_operaciones.cpp */

@@ -49,7 +49,7 @@ bool GetElemento (const MatrizBit& m, int f, int c)
 
 void SetElemento (MatrizBit& m, int f, int c, bool v)
 {
-  if (f <= m.filas && c <= m.columnas && f >= 0 && c >= 0)
+  if (f < m.filas && c < m.columnas && f >= 0 && c >= 0)
     m.v[m.columnas*f + c] = v;
 }
 
