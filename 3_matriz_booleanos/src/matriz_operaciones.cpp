@@ -16,10 +16,14 @@ bool Leer (istream& is, MatrizBit& m)
   int columnas;
   bool exito;
 
+  // Saltar espacios
+  while(isspace(is.peek()))
+    is.ignore();
+
   // Primer formato
   if(is.peek() == 'X' || is.peek() == '.')
   {
-    const int MAX_POS = 128;  // caben los 4 tipos de matrices
+    const int MAX_POS = 1024;
     char aux[MAX_POS];
     char valores[MAX_POS] = {'\0'};
 
@@ -29,14 +33,14 @@ bool Leer (istream& is, MatrizBit& m)
     columnas = strlen(valores); // fijamos las columnas
 
     filas = 1;
-    while(is.getline(aux, MAX_POS) && strlen(aux) == columnas)
+    while(is.getline(aux, MAX_POS) && is && strlen(aux) == columnas)
     {
       strcat(valores, aux);
       filas++;
     }
 
     ////////////////// CONDICIÓN PARA is /////////////////////////////////
-    exito = Inicializar(m, filas, columnas);
+    exito = is.good() && Inicializar(m, filas, columnas);
 
     if (exito)
     {
@@ -44,8 +48,14 @@ bool Leer (istream& is, MatrizBit& m)
       {
         for (int j = 0; j < columnas; j++)
         {
-          bool v = valores[columnas*i + j] == 'X';
-          SetElemento(m, i, j, v);
+          char c = valores[columnas*i + j];
+          if (c == 'X' || c == '.')
+          {
+            bool v = c == 'X' ? 1 : 0;
+            SetElemento(m, i, j, v);
+          }
+          else
+            return false;
         }
       }
     }

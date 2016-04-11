@@ -1,11 +1,13 @@
 /**
-  * @file matriz_bit3.cpp
-  * @brief Implementación de funciones para MatrizBit de tipo 3
+  * @file matriz_bit4.cpp
+  * @brief Implementación de funciones para MatrizBit de tipo 4
   *
   */
 
-#include "matriz_bit.h"
-using namespace std;
+namespace
+{
+  const int MAX_POS = 32;
+}
 
 bool Inicializar (MatrizBit& m, int fils, int cols)
 {
@@ -13,7 +15,7 @@ bool Inicializar (MatrizBit& m, int fils, int cols)
 
   if (exito)
   {
-    
+
   }
 
   return exito;

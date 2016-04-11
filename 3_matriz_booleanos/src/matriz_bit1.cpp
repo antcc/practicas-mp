@@ -4,9 +4,6 @@
   *
   */
 
-#include "matriz_bit.h"
-using namespace std;
-
 bool Inicializar (MatrizBit& m, int fils, int cols)
 {
   bool exito = fils <= m.MAX_FILAS && cols <= m.MAX_COLUMNAS

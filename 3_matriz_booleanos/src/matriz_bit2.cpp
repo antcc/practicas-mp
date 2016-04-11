@@ -4,9 +4,6 @@
   *
   */
 
-#include "matriz_bit.h"
-using namespace std;
-
 bool Inicializar (MatrizBit& m, int fils, int cols)
 {
   bool exito = fils * cols <= m.MAX_ESPACIO && fils >= 0 && cols >= 0;
@@ -16,9 +13,8 @@ bool Inicializar (MatrizBit& m, int fils, int cols)
     m.filas = fils;
     m.columnas = cols;
 
-    for (int i = 0; i < fils; i++)
-      for (int j = 0; j < cols; j++)
-        m.v[cols*i + j] = 0;
+    for (int i = 0; i < fils * cols; i++)
+      m.v[i] = 0;
   }
 
   return exito;
