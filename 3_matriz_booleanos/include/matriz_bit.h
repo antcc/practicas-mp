@@ -9,7 +9,7 @@
 #ifndef _MATRIZ_BIT_H_
 #define _MATRIZ_BIT_H_
 
-#define CUAL_COMPILO 3
+#define CUAL_COMPILO 4
 
 #if CUAL_COMPILO==1
   #include "matriz_bit1.h"

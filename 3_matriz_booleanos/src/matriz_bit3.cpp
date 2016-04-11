@@ -4,10 +4,7 @@
   *
   */
 
-namespace
-{
-  const int MAX_POS = 16;
-}
+const int MAX_POS = 16;
 
 bool Inicializar (MatrizBit& m, int fils, int cols)
 {
@@ -15,9 +12,9 @@ bool Inicializar (MatrizBit& m, int fils, int cols)
 
   if (exito)
   {
-    m.espacio = (fils << MAX_POS) + cols;
+    m.espacio = (fils << MAX_POS) | cols;
 
-    for (int i = 0; i < fils; i++)
+    for (int i = 0; i < fils * cols; i++)
       m.v[i] = '0';
   }
 
@@ -28,24 +25,15 @@ bool Inicializar (MatrizBit& m, int fils, int cols)
 
 int GetFilas (const MatrizBit& m)
 {
-  return (m.espacio - GetColumnas(m)) >> MAX_POS;
+  return m.espacio >> MAX_POS;
 }
 
 //________________________________________________________________
 
 int GetColumnas (const MatrizBit& m)
 {
-  int columnas = 0;
-
-  for (int i = MAX_POS - 1; i >= 0; i--)
-  {
-    int aux = 1 << i;
-    columnas += aux & m.espacio;
-  }
-
-  return columnas;
+  return m.espacio & 0xFFFF;
 }
-
 //________________________________________________________________
 
 bool GetElemento (const MatrizBit& m, int f, int c)

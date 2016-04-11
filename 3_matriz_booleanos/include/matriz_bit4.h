@@ -15,4 +15,6 @@ struct MatrizBit
   unsigned int v[MAX_ESPACIO];
 };
 
+#endif
+
 /* Fin fichero: matriz_bit4.h */

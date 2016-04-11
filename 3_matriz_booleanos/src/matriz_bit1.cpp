@@ -16,7 +16,7 @@ bool Inicializar (MatrizBit& m, int fils, int cols)
 
     for (int i = 0; i < fils; i++)
       for (int j = 0; j < cols; j++)
-        m.matriz[i][j] = 0;
+        m.matriz[i][j] = false;
   }
 
   return exito;

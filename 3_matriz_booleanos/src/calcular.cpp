@@ -3,9 +3,9 @@
   * @brief Módulo que permite realizar operaciones unarias y binarias con
   * matrices de booleanos.
   *
-  * La sintaxis de llamada es: calcular OPERACION [Parámetros]
-  *   - OPERACION: AND, OR (binarias); NOT, TRS (unarias)
-  *   - [Parámetros]: nombre(s) de fichero(s) donde se encuentra(n) la(s) matrizo matrices en cada caso.
+  * La sintaxis de llamada es: calcular OPERACIÓN [Parámetros]
+  *   - OPERACIÓN: AND, OR (binarias); NOT, TRS (unarias)
+  *   - [Parámetros]: nombre(s) de fichero(s) donde se encuentra(n) la(s) matriz (matrices) en cada caso.
   *   Si no se especifican, se leerá desde la entrada estándar.
   *
   * Un ejemplo de ejecución es:
@@ -20,7 +20,7 @@
   */
 
 #include <iostream>
-#include <cstring>
+#include <cstring>  //strcmp
 #include "matriz_operaciones.h"
 using namespace std;
 
@@ -153,7 +153,7 @@ int main(int argc, char* argv[])
         const bool IS_OR = op == OR;
         if((GetFilas(m) == GetFilas(n)) && (GetColumnas(m) == GetColumnas(n)))
         {
-          res = m; ///////??????????????????????????????????????????????????
+          res = m;
           IS_OR ? Or(res, m, n) : And(res, m, n);
           cout << "\n";
 
