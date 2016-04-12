@@ -81,7 +81,7 @@ bool Leer (istream& is, MatrizBit& m)
           is >> aux;
 
           if (aux == '1' || aux == '0')
-            SetElemento(m, i, j, aux);
+            SetElemento(m, i, j, aux == '1');
           else
             return false;
         }
