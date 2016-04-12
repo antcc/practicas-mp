@@ -53,9 +53,7 @@ bool Leer (istream& is, MatrizBit& m)
     exito =  is.eof() && Inicializar(m, filas, columnas);
 
     if (exito)
-    {
       for (int i = 0; i < filas; i++)
-      {
         for (int j = 0; j < columnas; j++)
         {
           char c = valores[columnas*i + j];
@@ -65,8 +63,6 @@ bool Leer (istream& is, MatrizBit& m)
           else
             return false;
         }
-      }
-    }
   }
   /*
     Segundo formato: Lectura de '1' y '0'
@@ -79,18 +75,17 @@ bool Leer (istream& is, MatrizBit& m)
     if (exito)
     {
       for (int i = 0; i < filas && exito; i++)
-      {
         for (int j = 0; j < columnas; j++)
         {
           char aux;
           is >> aux;
 
           if (aux == '1' || aux == '0')
-            SetElemento(m, i, j, aux == '1');
+            SetElemento(m, i, j, aux);
           else
             return false;
         }
-      }
+        
       exito = is;
     }
   }
