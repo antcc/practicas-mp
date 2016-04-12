@@ -38,7 +38,7 @@ int GetColumnas (const MatrizBit& m)
 
 bool GetElemento (const MatrizBit& m, int f, int c)
 {
-  return m.v[m.columnas*f + c];
+  return m.v[m.columnas * f + c];
 }
 
 //________________________________________________________________
@@ -46,7 +46,7 @@ bool GetElemento (const MatrizBit& m, int f, int c)
 void SetElemento (MatrizBit& m, int f, int c, bool v)
 {
   if (f < m.filas && c < m.columnas && f >= 0 && c >= 0)
-    m.v[m.columnas*f + c] = v;
+    m.v[m.columnas * f + c] = v;
 }
 
 /* Fin fichero: matriz_bit2.cpp */
