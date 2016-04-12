@@ -20,7 +20,6 @@ INC += $(addprefix $(INCLUDE)/, matriz_bit1.h matriz_bit2.h matriz_bit3.h matriz
 .PHONY: docs tar clean
 
 # ************ Generación de ejecutable ************
-#Simplificado
 
 $(BIN)/calcular: $(INC) $(SOURCES) $(SOURCESMAIN)
 	$(CXX) $(CXXFLAGS) -o $@ $(SOURCESMAIN)
@@ -38,4 +37,3 @@ tar: clean
 clean:
 	-@rm -f $(BIN)/calcular doc/html/* *.o $(SRC)/*~ $(INCLUDE)/*~ *~
 	@echo "Limpiando..."
-

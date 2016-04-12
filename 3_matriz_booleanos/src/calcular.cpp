@@ -20,7 +20,7 @@
   */
 
 #include <iostream>
-#include <cstring>  //strcmp
+#include <cstring>  // strcmp
 #include "matriz_operaciones.h"
 using namespace std;
 

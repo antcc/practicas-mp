@@ -5,10 +5,18 @@
   */
 
 #include <iosfwd> // istream,ostream
-#include <cstring> //strlen, strcat
+#include <cstring> // strlen, strcat
 #include <fstream>
 #include "matriz_operaciones.h"
 using namespace std;
+
+void EliminarBlancos(istream& is)
+{
+  while(isspace(is.peek()))
+    is.ignore();
+}
+
+//________________________________________________________________
 
 bool Leer (istream& is, MatrizBit& m)
 {
@@ -16,31 +24,33 @@ bool Leer (istream& is, MatrizBit& m)
   int columnas;
   bool exito;
 
-  // Saltar espacios
-  while(isspace(is.peek()))
-    is.ignore();
+  EliminarBlancos(is);
 
-  // Primer formato
-  if(is.peek() == 'X' || is.peek() == '.')
+  /*
+    Primer formato: 'X' --> 1 ; '.' --> 0
+  */
+  if (is.peek() == 'X' || is.peek() == '.')
   {
     const int MAX_POS = 1024;
+    char valores[MAX_POS];
     char aux[MAX_POS];
-    char valores[MAX_POS] = {'\0'};
 
-    // Lectura anticipada
-    is.getline(aux, MAX_POS);
-    strcat(valores, aux);
-    columnas = strlen(valores); // fijamos las columnas
-
+    is.getline(valores, MAX_POS);
+    columnas = strlen(valores);
     filas = 1;
-    /*while (is.peek() == 'X' || is.peek() == '.') leemos*/
-    while(is.getline(aux, MAX_POS) && is && strlen(aux) == columnas)
+    EliminarBlancos(is);
+
+    while (is.getline(aux, MAX_POS))
     {
+      if (strlen(aux) != columnas)
+        return false;
+
       strcat(valores, aux);
       filas++;
+      EliminarBlancos(is);
     }
 
-    exito = is.good() && Inicializar(m, filas, columnas);
+    exito =  is.eof() && Inicializar(m, filas, columnas);
 
     if (exito)
     {
@@ -49,18 +59,18 @@ bool Leer (istream& is, MatrizBit& m)
         for (int j = 0; j < columnas; j++)
         {
           char c = valores[columnas*i + j];
+
           if (c == 'X' || c == '.')
-          {
-            bool v = c == 'X' ? true : false;
-            SetElemento(m, i, j, v);
-          }
+            SetElemento(m, i, j, c == 'X');
           else
             return false;
         }
       }
     }
   }
-  // Segundo formato
+  /*
+    Segundo formato: Lectura de '1' y '0'
+  */
   else
   {
     is >> filas >> columnas;
