@@ -8,14 +8,24 @@ const int BITS_INT = 32;
 
 bool Inicializar (MatrizBit& m, int fils, int cols)
 {
+  const int ELEMENTOS = fils * cols;
   bool exito = fils * cols <= BITS_INT * m.MAX_ESPACIO && fils >= 0 && cols >= 0;
 
   if (exito)
   {
-    m.espacio = (fils << 8) | cols;
+    const int POS_VECTOR = ELEMENTOS / BITS_INT;
+    const int POS_BIT = ELEMENTOS % BITS_INT;
 
-    for (int i = 0; i < 4; i++)
-      m.v[i] = 0;
+    if (ELEMENTOS >= BITS_INT)
+      for (int i = 0; i < POS_VECTOR; i++)
+        m.v[i] = 0;
+
+    int aux = m.v[POS_VECTOR];
+
+    for (int i = 0; i < POS_BIT; i++)
+      aux &= ~(1 << i);
+
+    m.v[POS_VECTOR] = aux;
   }
 
   return exito;
@@ -56,11 +66,12 @@ void SetElemento (MatrizBit& m, int f, int c, bool v)
     const int POS = f * COLS + c;
     const int POS_VECTOR = POS / BITS_INT;
     const int POS_BIT = POS % BITS_INT;
+    unsigned int aux = 1 << POS_BIT;
 
     if (v)
-      m.v[POS_VECTOR] |= (1 << POS_BIT);
+      m.v[POS_VECTOR] |= aux;
     else
-      m.v[POS_VECTOR] &= ~(1 << POS_BIT);
+      m.v[POS_VECTOR] &= ~aux;
   }
 }
 
