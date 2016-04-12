@@ -5,6 +5,7 @@
   */
 
 const int BITS_INT = 32;
+const int POS_MAX = 8;
 
 bool Inicializar (MatrizBit& m, int fils, int cols)
 {
@@ -13,6 +14,7 @@ bool Inicializar (MatrizBit& m, int fils, int cols)
 
   if (exito)
   {
+    m.espacio = (fils << POS_MAX) | cols;
     const int POS_VECTOR = ELEMENTOS / BITS_INT;
     const int POS_BIT = ELEMENTOS % BITS_INT;
 
@@ -35,7 +37,7 @@ bool Inicializar (MatrizBit& m, int fils, int cols)
 
 int GetFilas (const MatrizBit& m)
 {
-  return m.espacio >> 8;
+  return m.espacio >> POS_MAX;
 }
 
 //________________________________________________________________
