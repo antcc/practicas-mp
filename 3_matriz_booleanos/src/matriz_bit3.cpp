@@ -38,7 +38,7 @@ int GetColumnas (const MatrizBit& m)
 
 bool GetElemento (const MatrizBit& m, int f, int c)
 {
-  return m.v[GetColumnas(m) * f + c];
+  return m.v[GetColumnas(m) * f + c] == '1';
 }
 
 //________________________________________________________________
