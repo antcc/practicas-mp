@@ -1,0 +1,6 @@
+Hola
+Adiós
+Prueba
+prueba, aunque con minúscula
+Mayúscula
+minúscula
