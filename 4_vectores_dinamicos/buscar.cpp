@@ -29,10 +29,12 @@ int Uniforme (int minimo, int maximo)
 void Generar (int* v, int n, int max)
 {
 	for (int i = 0; i < n; i++)
-		v[i] = Uniforme(1, max);
+			// O begin[i] = i % max + 1; pero así es mas aleatorio (?)
+			v[i] = Uniforme(1, max);
 
-	for (int i = 0; i < n; i++)
-		Intercambiar(v, i, Uniforme(0, n - 1));
+	for (int i = 0; i < n * 10; i++)
+		// Intecambia posiciones
+		Intercambiar(v, Uniforme(0, n - 1), Uniforme(0, n - 1));
 }
 
 
@@ -51,7 +53,7 @@ int Buscar (const int* v, int pos, int n, int dato)
 int* BuscarGarantizada (const int* inicial, int dato)
 {
 	int* p = inicial;
-	
+
 	while (&p != dato)
 		p++;
 
@@ -115,45 +117,45 @@ int BusquedaBinariaInterp(const int* vec, int n, int dato)
 
 int main (int argc, char* argv[])
 {
-   if (argc != 3) 
+   if (argc != 3)
    {
 	   cerr << "Uso: " << argv[0] << " <número de datos> <máximo dato>" << endl;
 	   return 1;
    }
-   
+
    srand(time(0)); // Inicializamos generador de números
 
    int n = atoi(argv[1]);
-   
-   if (n < 5) 
+
+   if (n < 5)
    {
       cerr << "Debería especificar al menos 5 elementos" << endl;
       return 2;
    }
-   else 
+   else
    {
       // FIXME 1: prepara el vector v
 	  // FIXME 6: reservar una posición más para garantizar la búsqueda
 	   int* v = new int[n + 1];
 	   int max = atoi(argc[2]);
-	   
+
 	   Generar(v, n, max);
 	   cout << "Generados: ";
 
 	   for (int i = 0; i < n; i++)
-		   cout << v[i] << " "; 
+		   cout << v[i] << " ";
 
 		cout << endl;
-      
+
 		// FIXME 8: Ordenar el vector con OrdenarInsercion y listarlos
 		cout << "Ordenados: ";
 		OrdenarInsercion(v, n);
 
-      
+
 		// FIXME 2: Pregunta por dato a buscar y lo localiza
 		// FIXME 3: Modificación para localizar todas las ocurrencias
 		// Se añade otro parámetro? El guión lo dice pero no me queda claro
-		// Al usar la otra función, ya no sale en el main la antigua 
+		// Al usar la otra función, ya no sale en el main la antigua
 
 		int dato;
 
@@ -165,21 +167,19 @@ int main (int argc, char* argv[])
 		int* ult_pos = v + n;
 		&ult_post = dato;
 		int* pos = BuscarGarantizada(v, dato);
-		
+
 		while (pos != ult_post)
 		{
 			cout << "\n Encontrado en: " << (pos - v);
 			pos = BusquedaGarantizada(pos + 1, dato);
 		}
-      
+
 		// FIXME 9: Preguntar por búsqueda binaria y resolver la posición
 		cout << "\nIntroduzca un dato a buscar binario: ";
 		cin >> dato;
 		cout << "\n Encontrado en: " << BusquedaBinariaRec(v, n, dato);
-      
+
 		// FIXME 1: deja de usarse v
 		delete[] v;
    }
 }
-  
-  
