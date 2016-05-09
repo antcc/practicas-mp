@@ -21,6 +21,7 @@ class Matriz {
     int columnas() const {return m_columnas;}
     int get(int f, int c) const;
     void set(int f, int c, int v);  // @pre: 0 <= f,c <= 20
+    void reset(); // pone todo a 0
 };
 
 #endif

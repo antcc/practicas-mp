@@ -37,7 +37,7 @@ class Tablero {
     int fichas() const {return m_fichas;}
     TipoFicha get(int f, int c) const;
     bool finalizada() const;
-    int turnoActual() const;
+    int turnoActual() const {return m_turno;}
     int ganador() const;  // 0 empate(o no finalizado), 1 j1, 2 j2
     int puntuacion() const; // @pre: la partida debe estar finalizada
     void insertar(int c);   // las columnas empiezan en 1

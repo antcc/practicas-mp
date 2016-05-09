@@ -83,11 +83,6 @@ bool Tablero::finalizada() const
   return finalizada;
 }
 
-int Tablero::turnoActual() const
-{
-  return m_turno;
-}
-
 int Tablero::ganador() const
 {
   int ganador = 0;
@@ -129,8 +124,8 @@ void Tablero::insertar(int c)
 
 void Tablero::vaciar()
 {
-  Tablero aux(filas(), columnas(), m_fichas);
-  *this = aux;
+  m_tablero.reset();
+  m_turno = 1;
 }
 
 void Tablero::prettyPrint(bool fin) const

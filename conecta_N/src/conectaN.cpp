@@ -11,7 +11,7 @@
 #include "jugador.h"
 using namespace std;
 
-int main(int argc, char* argv[])
+int main()
 {
   Tablero tab(6,7,4);
   cout << "Se ha creado un tablero de " << tab.filas() << " filas y " << tab.columnas()
