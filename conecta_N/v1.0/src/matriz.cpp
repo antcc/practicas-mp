@@ -35,8 +35,8 @@ void Matriz::set(int f, int c, int v)
 
 void Matriz::reset()
 {
-  for (int i = 0; i < filas(); i++)
-    for (int j = 0; j < columnas(); j++)
+  for (int i = 0; i < m_filas; i++)
+    for (int j = 0; j < m_columnas; j++)
       m_matriz[i][j] = 0;
 }
 
