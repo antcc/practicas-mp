@@ -20,7 +20,7 @@ class Tablero {
     bool m_finalizada;
 
     /**
-      * @brief Comprueba si hay alguna alineación de `M_FICHAS` fichas
+      * @brief Comprueba si hay alguna alineación de `M_FICHAS`
       *
       * @retval @a true si la partida ha finalizado con un ganador
       * @retval @a false si la partida aún no hay un ganador

@@ -9,6 +9,13 @@
 #include <cassert>
 #include "tablero.h"
 
+Tablero::Tablero(int f, int c, int fichas) : m_tablero(f,c), M_FICHAS(fichas)
+{
+  assert(f >= 4 && c >= 4 && fichas >= 3 && fichas < (f <= c) ? f : c);
+  m_turno = 1;
+  m_finalizada = false;
+}
+
 bool Tablero::compruebaFinalizada() const
 {
   int fils = filas();
@@ -69,13 +76,6 @@ bool Tablero::compruebaFinalizada() const
   }
 
   return finalizada;
-}
-
-Tablero::Tablero(int f, int c, int fichas) : m_tablero(f,c), M_FICHAS(fichas)
-{
-  assert(f >= 4 && c >= 4 && fichas >= 3 && fichas < (f <= c) ? f : c);
-  m_turno = 1;
-  m_finalizada = false;
 }
 
 Tablero::TipoFicha Tablero::get(int f, int c) const

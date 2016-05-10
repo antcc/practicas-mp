@@ -10,7 +10,6 @@
 Matriz::Matriz()
 {
   m_filas = m_columnas = 0;
-  reset();
 }
 
 Matriz::Matriz(int f, int c)
@@ -24,20 +23,20 @@ Matriz::Matriz(int f, int c)
 int Matriz::get(int f, int c) const
 {
   assert (f >= 0 && f < m_filas && c >= 0 && c < m_columnas);
-  return m_matriz[f][c];
+  return m_datos[f][c];
 }
 
 void Matriz::set(int f, int c, int v)
 {
   assert (f >= 0 && f < m_filas && c >= 0 && c < m_columnas);
-  m_matriz[f][c] = v;
+  m_datos[f][c] = v;
 }
 
 void Matriz::reset()
 {
   for (int i = 0; i < m_filas; i++)
     for (int j = 0; j < m_columnas; j++)
-      m_matriz[i][j] = 0;
+      m_datos[i][j] = 0;
 }
 
 /* Fin fichero: matriz.cpp */

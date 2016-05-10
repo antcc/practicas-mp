@@ -5,16 +5,43 @@
   */
 
 #include <iostream>
-#include <cstring>  // strcpy
+#include <cstring>  // strlen, strcpy
 #include <cassert>
 #include "jugador.h"
-#include "tablero.h"
 
-Jugador::Jugador(char *nombre, int turno)
+Jugador::Jugador(char* nombre, int turno)
 {
+  m_nombre = new char[strlen(nombre)];
   strcpy(m_nombre, nombre);
   m_turno = turno;
   m_puntos = 0;
+}
+
+Jugador::Jugador(const Jugador& jug)
+{
+  m_nombre = new char[strlen(jug.m_nombre)];
+  strcpy(m_nombre, jug.m_nombre);
+  m_turno = jug.m_turno;
+  m_puntos = jug.m_puntos;
+}
+
+Jugador& Jugador::operator=(const Jugador& jug)
+{
+  Jugador aux(jug);
+
+  char *p = m_nombre;
+  m_nombre = aux.m_nombre;
+  aux.m_nombre = p;
+
+  int i = m_turno;
+  m_turno = aux.m_turno;
+  aux.m_turno = i;
+
+  i = m_puntos;
+  m_puntos = aux.m_puntos;
+  aux.m_puntos = i;
+
+  return *this;
 }
 
 void Jugador::escogeColumna(Tablero& tab) const
