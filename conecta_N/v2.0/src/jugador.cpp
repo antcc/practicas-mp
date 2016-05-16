@@ -9,12 +9,18 @@
 #include <cassert>
 #include "jugador.h"
 
-Jugador::Jugador(char* nombre, int turno)
+Jugador::Jugador()
+{
+  m_nombre = 0;
+  m_turno = m_puntos = 0;
+}
+
+Jugador::Jugador(char* nombre, int turno, int puntos)
 {
   m_nombre = new char[strlen(nombre)];
   strcpy(m_nombre, nombre);
   m_turno = turno;
-  m_puntos = 0;
+  m_puntos = puntos;
 }
 
 Jugador::Jugador(const Jugador& jug)
@@ -44,7 +50,7 @@ Jugador& Jugador::operator=(const Jugador& jug)
   return *this;
 }
 
-void Jugador::escogeColumna(Tablero& tab) const
+bool Jugador::escogeColumna(Tablero& tab) const
 {
   assert(m_turno == tab.turnoActual());
 
@@ -53,18 +59,47 @@ void Jugador::escogeColumna(Tablero& tab) const
 
   tab.prettyPrint();
 
-  do {
-    std::cout << m_nombre << ", escoja una columna (a-" << static_cast<char>(97+cols) << "): ";
-    std::cin >> c;
-  } while (c < 97 || c > 97+cols);
-
+  std::cout << m_nombre << ", escoja una columna (a-" << static_cast<char>(97+cols) << "): ";
+  std::cin >> c;
   std::cout << std::endl;
+
+  if(c < 97 || c > 97+cols)
+    return false;
+
   tab.insertar(c-96);  // las columnas empiezan en 1
+
+  return true;
 }
 
 void Jugador::sumaPuntos(const Tablero& tab)
 {
   m_puntos += tab.puntuacion();
+}
+
+std::ostream& operator<<(std::ostream& os, const Jugador& jug)
+{
+  os << "#" << jug.nombre() << std::endl;
+  os << jug.turno() << " " << jug.puntos();
+
+  return os;
+}
+
+std::istream& operator>>(std::istream& is, Jugador& jug)
+{
+  char nombre[1024];
+  int turno, puntos;
+  char algo;
+
+  while (isspace(is.peek()) || is.peek() != '#')
+    is.ignore();
+
+  is.ignore();  // ignorar '#'
+  is.getline(nombre, 1024);
+  std::cerr << nombre << std::endl;
+  is >> turno >> puntos;
+  jug = Jugador(nombre, turno, puntos);
+
+  return is;
 }
 
 /* Fin fichero: jugador.cpp */

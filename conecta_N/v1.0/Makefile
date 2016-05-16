@@ -27,10 +27,6 @@ SOURCES := $(addprefix $(SRC)/, $(SOURCES))
 $(BIN)/conectaN: $(OBJ)/conectaN.o $(OBJECTS)
 	$(CXX) -o $@ $^
 
-# -- Debug --
-$(DEBUG)/debug-%: $(DEBUG)/debug-%.o $(OBJECTS)
-	$(CXX) -o $@ $^
-
 # ************ Compilación de módulos ************
 # -- Programa principal --
 $(OBJ)/conectaN.o: $(SRC)/conectaN.cpp $(INCLUDES)
@@ -39,13 +35,8 @@ $(OBJ)/conectaN.o: $(SRC)/conectaN.cpp $(INCLUDES)
 $(OBJ)/%.o: $(SRC)/%.cpp $(INC)/%.h
 	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
-# -- Debug --
-$(DEBUG)/debug-%.o: $(DEBUG)/debug-%.cpp $(INC)/%.h
-	$(CXX) $(CXXFLAGS) -o $@ -c $<
-
 # -- Dependencias adicionales --
 $(OBJ)/tablero.o: $(INC)/matriz.h
-
 $(OBJ)/jugador.o: $(INC)/tablero.h
 
 # ************ Generación de documentación ******************

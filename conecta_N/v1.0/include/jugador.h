@@ -7,7 +7,7 @@
 #ifndef _JUGADOR_H_
 #define _JUGADOR_H_
 
-class Tablero;
+#include "tablero.h"
 
 /**
   * @class Jugador

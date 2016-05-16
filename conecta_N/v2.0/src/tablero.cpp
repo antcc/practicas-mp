@@ -4,10 +4,16 @@
   *
   */
 
-#include <iostream>
+#include <iosfwd>
 #include <iomanip>  // setw, setfill
 #include <cassert>
 #include "tablero.h"
+
+Tablero::Tablero() :m_tablero(0,0), M_FICHAS(0)
+{
+  m_turno = 0;
+  m_finalizada = false;
+}
 
 Tablero::Tablero(int f, int c, int fichas) : m_tablero(f,c), M_FICHAS(fichas)
 {
@@ -134,47 +140,47 @@ int Tablero::puntuacion() const
   return puntos;
 }
 
-void Tablero::prettyPrint() const
+void Tablero::prettyPrint(std::ostream& os) const
 {
   int fils = filas();
   int cols = columnas();
 
   for (char i = 97; i < 97 + cols; i++)
-    std::cout << "[" << i << "] ";
-  std::cout << std::endl;
+    os << "[" << i << "] ";
+  os << std::endl;
 
   for (int i = 0; i < fils; i++) {
     for (int j = 0; j < cols; j++) {
-      std::cout << "[";
+      os << "[";
       if (get(i,j) == FICHA_J1)
-        std::cout << "x";
+        os << "x";
       else if (get(i,j) == FICHA_J2)
-        std::cout << "o";
+        os << "o";
       else
-        std::cout << " ";
-      std::cout << "] ";
+        os << " ";
+      os << "] ";
     }
-    std::cout << std::endl;
+    os << std::endl;
   }
 
-  std::cout << std::setfill('=') << std::setw(4 * columnas())
-            << " " << std::endl;
+  os << std::setfill('=') << std::setw(4 * columnas())
+     << " " << std::endl;
 
   if (!m_finalizada) {
     if (m_turno == 1)
-      std::cout << "Turno: jugador 1 (x)";
+      os << "Turno: jugador 1 (x)";
     else
-      std::cout << "Turno: jugador 2 (o)";
-    std::cout << std::endl;
+      os << "Turno: jugador 2 (o)";
+    os << std::endl;
   }
   else {
-    std::cout << "Partida finalizada. ";
+    os << "Partida finalizada. ";
       if (ganador() == 1)
-        std::cout << "Ganador: jugador 1.\n";
+        os << "Ganador: jugador 1.\n";
       else if (ganador() == 2)
-        std::cout << "Ganador: jugador 2.\n";
+        os << "Ganador: jugador 2.\n";
       else
-        std::cout << "La partida terminó en empate.\n";
+        os << "La partida terminó en empate.\n";
   }
 }
 
@@ -183,6 +189,18 @@ void Tablero::vaciar()
   m_tablero.reset();
   m_turno = 1;
   m_finalizada = false;
+}
+
+std::ostream& operator<<(std::ostream& os, const Tablero& tab)
+{
+  os << tab.m_tablero;
+  return os;
+}
+
+std::istream& operator>>(std::istream& is, Tablero& tab)
+{
+  is >> tab.m_tablero;
+  return is;
 }
 
 /* Fin fichero: tablero.cpp */

@@ -18,16 +18,25 @@ class Jugador {
     int m_turno;
     int m_puntos;
   public:
-    Jugador(char* nombre, int turno);
+    Jugador();
+    Jugador(char* nombre, int turno, int puntos = 0);
     Jugador(const Jugador& jug);
     ~Jugador() {delete[] m_nombre;}
     Jugador& operator=(const Jugador& jug);
     const char* nombre() const {return m_nombre;}
     int turno() const {return m_turno;}
     int puntos() const {return m_puntos;}
-    void escogeColumna(Tablero& tab) const;
+    bool escogeColumna(Tablero& tab) const;
     void sumaPuntos(const Tablero& tab);
 };
+
+std::ostream& operator<<(std::ostream& os, const Jugador& jug);
+
+/**
+  *
+  *
+  */
+std::istream& operator>>(std::istream& is, Jugador& jug);
 
 #endif
 

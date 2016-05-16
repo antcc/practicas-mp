@@ -7,6 +7,8 @@
 #ifndef _MATRIZ_H_
 #define _MATRIZ_H_
 
+#include <iostream>
+
 /**
   * @class Matriz
   * @brief Gestiona una estructura bidimensional de datos enteros
@@ -27,6 +29,18 @@ class Matriz {
     void reset(); // pone todo a 0
     void swap(Matriz& mat);
 };
+
+/**
+  *
+  *
+  */
+std::ostream& operator<<(std::ostream& os, const Matriz& m);
+
+/**
+  *
+  *
+  */
+std::istream& operator>>(std::istream& is, Matriz& m);
 
 #endif
 

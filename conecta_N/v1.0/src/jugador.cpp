@@ -8,7 +8,6 @@
 #include <cstring>  // strcpy
 #include <cassert>
 #include "jugador.h"
-#include "tablero.h"
 
 Jugador::Jugador(char *nombre, int turno)
 {

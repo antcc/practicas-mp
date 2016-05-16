@@ -7,6 +7,7 @@
 #ifndef _TABLERO_H_
 #define _TABLERO_H_
 
+#include <iostream>
 #include "matriz.h"
 
 /**
@@ -26,6 +27,8 @@ class Tablero {
       * @retval @a false si la partida aún no hay un ganador
       */
     bool compruebaFinalizada() const;
+    friend std::ostream& operator<<(std::ostream& os, const Tablero& tab);
+    friend std::istream& operator>>(std::istream& is, Tablero& tab);
   public:
     /**
       * @brief Tipo de ficha
@@ -40,6 +43,7 @@ class Tablero {
                      FICHA_J2  ///<  Representa una ficha del jugador 2
                     };
 
+    Tablero();
     Tablero(int f, int c, int fichas);  //@pre 4 <= f,c <= 20, 3 <= fichas < min{f,c} - 1
     int filas() const {return m_tablero.filas();}
     int columnas() const {return m_tablero.columnas();}
@@ -51,9 +55,21 @@ class Tablero {
     void insertar(int c);   // las columnas empiezan en 1
     int ganador() const;  // 0 empate(o no finalizado), 1 j1, 2 j2
     int puntuacion() const; // @pre: la partida debe estar finalizada
-    void prettyPrint() const;
+    void prettyPrint(std::ostream& os = std::cout) const;
     void vaciar();
 };
+
+/**
+  *
+  *
+  */
+std::ostream& operator<<(std::ostream& os, const Tablero& tab);
+
+/**
+  *
+  *
+  */
+std::istream& operator>>(std::istream& is, Tablero& tab);
 
 #endif
 

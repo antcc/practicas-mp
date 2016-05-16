@@ -23,7 +23,7 @@ Matriz::Matriz(int f, int c)
 
 Matriz::Matriz(const Matriz& mat)
 {
-  m_datos = new int[mat.m_filas*mat.m_columnas];
+  m_datos = new int[mat.m_filas * mat.m_columnas];
   m_filas = mat.m_filas;
   m_columnas = mat.m_columnas;
 
@@ -71,6 +71,34 @@ void Matriz::swap(Matriz& mat)
   aux = m_columnas;
   m_columnas = mat.m_columnas;
   mat.m_columnas = aux;
+}
+
+std::ostream& operator<<(std::ostream& os, const Matriz& m)
+{
+  os << m.filas() << " " << m.columnas() << std::endl;
+  for (int i = 0; i < m.filas(); i++) {
+    for (int j = 0; j < m.columnas(); j++)
+      os << m.get(i,j) << " ";
+    os << std::endl;
+  }
+  return os;
+}
+
+std::istream& operator>>(std::istream& is, Matriz& m)
+{
+  int n;
+  int f, c;
+
+  is >> f >> c;
+  m = Matriz(f,c);
+
+  for (int i = 0; i < m.filas(); i++) {
+    for (int j = 0; j < m.columnas(); j++) {
+      is >> n;
+      m.set(i,j,n);
+    }
+  }
+  return is;
 }
 
 /* Fin fichero: matriz.cpp */
