@@ -25,44 +25,44 @@ bool Tablero::compruebaFinalizada() const
       if (ficha != VACIA) {
         f = i-1;
         int n = 1;
-        while(n < M_FICHAS && f >= 0 && get(f,j) == ficha) {
+        while(n < m_fichas && f >= 0 && get(f,j) == ficha) {
           n++;
           f--;
         }
-        finalizada = n == M_FICHAS;
+        finalizada = n == m_fichas;
 
         if (!finalizada) {
           c = j+1;
           n = 1;
-          while(n < M_FICHAS && c < cols && get(i,c) == ficha) {
+          while(n < m_fichas && c < cols && get(i,c) == ficha) {
             n++;
             c++;
           }
-          finalizada = n == M_FICHAS;
+          finalizada = n == m_fichas;
         }
 
         if (!finalizada) {
           f = i-1;
           c = j+1;
           n = 1;
-          while(n < M_FICHAS && c < cols && f >= 0 && get(f,c) == ficha) {
+          while(n < m_fichas && c < cols && f >= 0 && get(f,c) == ficha) {
             n++;
             f--;
             c++;
           }
-          finalizada = n == M_FICHAS;
+          finalizada = n == m_fichas;
         }
 
         if (!finalizada) {
           f = i+1;
           c = j+1;
           n = 1;
-          while(n < M_FICHAS && c < cols && f < fils && get(f,c) == ficha) {
+          while(n < m_fichas && c < cols && f < fils && get(f,c) == ficha) {
             n++;
             f++;
             c++;
           }
-          finalizada = n == M_FICHAS;
+          finalizada = n == m_fichas;
         }
       }
     }
@@ -71,7 +71,7 @@ bool Tablero::compruebaFinalizada() const
   return finalizada;
 }
 
-Tablero::Tablero(int f, int c, int fichas) : m_tablero(f,c), M_FICHAS(fichas)
+Tablero::Tablero(int f, int c, int fichas) : m_tablero(f,c), m_fichas(fichas)
 {
   assert(f >= 4 && c >= 4 && fichas >= 3 && fichas < (f <= c) ? f : c);
   m_turno = 1;
@@ -128,7 +128,7 @@ int Tablero::puntuacion() const
   int tam = filas() * columnas();
 
   puntos += 2 * tam;
-  puntos += M_FICHAS * (M_FICHAS - 1);
+  puntos += m_fichas * (m_fichas - 1);
   puntos += tam - (fichasTotales() % tam);
 
   return puntos;

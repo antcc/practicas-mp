@@ -7,7 +7,7 @@
 #ifndef _MATRIZ_H_
 #define _MATRIZ_H_
 
-#include <iostream>
+#include <iosfwd>
 
 /**
   * @class Matriz

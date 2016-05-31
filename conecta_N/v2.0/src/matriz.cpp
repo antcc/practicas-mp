@@ -4,6 +4,7 @@
   *
   */
 
+#include <iostream>
 #include <cassert>
 #include "matriz.h"
 
@@ -90,7 +91,8 @@ std::istream& operator>>(std::istream& is, Matriz& m)
   int f, c;
 
   is >> f >> c;
-  m = Matriz(f,c);
+  if (is)
+    m = Matriz(f,c);
 
   for (int i = 0; i < m.filas(); i++) {
     for (int j = 0; j < m.columnas(); j++) {

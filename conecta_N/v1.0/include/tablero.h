@@ -15,12 +15,12 @@
   */
 class Tablero {
     Matriz m_tablero;
-    const int M_FICHAS;
+    const int m_fichas;
     int m_turno;
     bool m_finalizada;
 
     /**
-      * @brief Comprueba si hay alguna alineación de `M_FICHAS` fichas
+      * @brief Comprueba si hay alguna alineación de `m_fichas` fichas
       *
       * @retval @a true si la partida ha finalizado con un ganador
       * @retval @a false si la partida aún no hay un ganador
@@ -43,7 +43,7 @@ class Tablero {
     Tablero(int f, int c, int fichas);  //@pre 4 <= f,c <= 20, 3 <= fichas < min{f,c} - 1
     int filas() const {return m_tablero.filas();}
     int columnas() const {return m_tablero.columnas();}
-    int fichas() const {return M_FICHAS;}
+    int fichas() const {return m_fichas;}
     int turnoActual() const {return m_turno;}
     bool finalizada() const {return m_finalizada;}
     TipoFicha get(int f, int c) const;

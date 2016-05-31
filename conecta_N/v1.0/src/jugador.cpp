@@ -26,12 +26,12 @@ void Jugador::escogeColumna(Tablero& tab) const
   tab.prettyPrint();
 
   do {
-    std::cout << m_nombre << ", escoja una columna (a-" << static_cast<char>(97+cols) << "): ";
+    std::cout << m_nombre << ", escoja una columna (a-" << static_cast<char>('a'+cols) << "): ";
     std::cin >> c;
-  } while (c < 97 || c > 97+cols);
+  } while (c < 'a' || c > 'a'+cols);
 
   std::cout << std::endl;
-  tab.insertar(c-96);  // las columnas empiezan en 1
+  tab.insertar(c-('a'-1));  // las columnas empiezan en 1
 }
 
 void Jugador::sumaPuntos(const Tablero& tab)

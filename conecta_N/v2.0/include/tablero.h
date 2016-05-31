@@ -7,7 +7,7 @@
 #ifndef _TABLERO_H_
 #define _TABLERO_H_
 
-#include <iostream>
+#include <iosfwd>
 #include "matriz.h"
 
 /**
@@ -16,18 +16,24 @@
   */
 class Tablero {
     Matriz m_tablero;
-    const int M_FICHAS;
+    int m_fichas;
     int m_turno;
     bool m_finalizada;
 
     /**
-      * @brief Comprueba si hay alguna alineación de `M_FICHAS`
+      * @brief Comprueba si hay alguna alineación de `m_fichas`
       *
       * @retval @a true si la partida ha finalizado con un ganador
-      * @retval @a false si la partida aún no hay un ganador
+      * @retval @a false si aún no hay un ganador
       */
     bool compruebaFinalizada() const;
+    /**
+      * @brief Declaración de amistad para el operador de salida de datos
+      */
     friend std::ostream& operator<<(std::ostream& os, const Tablero& tab);
+    /**
+      * @brief Declaración de amistad para el operador de entrada de datos
+      */
     friend std::istream& operator>>(std::istream& is, Tablero& tab);
   public:
     /**
@@ -47,7 +53,7 @@ class Tablero {
     Tablero(int f, int c, int fichas);  //@pre 4 <= f,c <= 20, 3 <= fichas < min{f,c} - 1
     int filas() const {return m_tablero.filas();}
     int columnas() const {return m_tablero.columnas();}
-    int fichas() const {return M_FICHAS;}
+    int fichas() const {return m_fichas;}
     int turnoActual() const {return m_turno;}
     bool finalizada() const {return m_finalizada;}
     TipoFicha get(int f, int c) const;
@@ -60,14 +66,12 @@ class Tablero {
 };
 
 /**
-  *
-  *
+  * @brief Sobrecarga del operador de salida de datos
   */
 std::ostream& operator<<(std::ostream& os, const Tablero& tab);
 
 /**
-  *
-  *
+  * @brief Sobrecarga del operador de entrada de datos
   */
 std::istream& operator>>(std::istream& is, Tablero& tab);
 
