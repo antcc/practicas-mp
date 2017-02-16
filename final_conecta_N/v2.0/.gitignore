@@ -1,0 +1,6 @@
+debug/*
+*~
+src/*~
+include/*~
+*.txt
+.clang_complete

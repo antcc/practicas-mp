@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.12"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Conecta-N: Fichero Fuente include/tablero.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Conecta-N
+   </div>
+   <div id="projectbrief">Práctica final - MP</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.12 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('',false,false,'search.php','Buscar');
+});
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('tablero_8h_source.html','');});
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle">
+<div class="title">tablero.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="tablero_8h.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#ifndef _TABLERO_H_</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#define _TABLERO_H_</span></div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="matriz_8h.html">matriz.h</a>&quot;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div><div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="classTablero.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="classTablero.html">Tablero</a> {</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="classMatriz.html">Matriz</a> m_tablero;</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">int</span> m_fichas;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">int</span> m_turno;</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">bool</span> m_finalizada;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classTablero.html#ad5cd5b9ca952a40a8fd7813ecb4daabc">compruebaFinalizada</a>() <span class="keyword">const</span>;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  <span class="keyword">public</span>:</div><div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classTablero.html#acad7588be85438a623ae441cf574b118aae90433fbd8e672f9595579f759a6c01">   38</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="classTablero.html#acad7588be85438a623ae441cf574b118">TipoFicha</a> { <a class="code" href="classTablero.html#acad7588be85438a623ae441cf574b118aae90433fbd8e672f9595579f759a6c01">VACIA</a>,    </div><div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classTablero.html#acad7588be85438a623ae441cf574b118a5aa5ce138b365bd80b28131d1ffeea6c">   39</a></span>&#160;                     <a class="code" href="classTablero.html#acad7588be85438a623ae441cf574b118a5aa5ce138b365bd80b28131d1ffeea6c">FICHA_J1</a>, </div><div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classTablero.html#acad7588be85438a623ae441cf574b118a01ef4225cb1a14056d0a1d93b8eea2aa">   40</a></span>&#160;                     <a class="code" href="classTablero.html#acad7588be85438a623ae441cf574b118a01ef4225cb1a14056d0a1d93b8eea2aa">FICHA_J2</a>  </div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                    };</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classTablero.html">Tablero</a>(<span class="keywordtype">int</span> f, <span class="keywordtype">int</span> c, <span class="keywordtype">int</span> fichas);  <span class="comment">//@pre 4 &lt;= f,c &lt;= 20, 3 &lt;= fichas &lt; min{f,c} - 1</span></div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">int</span> filas()<span class="keyword"> const </span>{<span class="keywordflow">return</span> m_tablero.filas();}</div><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">int</span> columnas()<span class="keyword"> const </span>{<span class="keywordflow">return</span> m_tablero.columnas();}</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">int</span> fichas()<span class="keyword"> const </span>{<span class="keywordflow">return</span> m_fichas;}</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">int</span> turnoActual()<span class="keyword"> const </span>{<span class="keywordflow">return</span> m_turno;}</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">bool</span> finalizada()<span class="keyword"> const </span>{<span class="keywordflow">return</span> m_finalizada;}</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="classTablero.html#acad7588be85438a623ae441cf574b118">TipoFicha</a> <span class="keyword">get</span>(<span class="keywordtype">int</span> f, <span class="keywordtype">int</span> c) <span class="keyword">const</span>;</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">int</span> fichasTotales() <span class="keyword">const</span>;</div><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> insertar(<span class="keywordtype">int</span> c);   <span class="comment">// las columnas empiezan en 1</span></div><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">int</span> ganador() <span class="keyword">const</span>;  <span class="comment">// 0 empate(o no finalizado), 1 j1, 2 j2</span></div><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">int</span> puntuacion() <span class="keyword">const</span>; <span class="comment">// @pre: la partida debe estar finalizada</span></div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> prettyPrint() <span class="keyword">const</span>;</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> vaciar();</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;};</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div><div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#endif</span></div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div><div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">/* Fin fichero: tablero.h */</span></div><div class="ttc" id="classMatriz_html"><div class="ttname"><a href="classMatriz.html">Matriz</a></div><div class="ttdoc">Gestiona una estructura bidimensional de datos enteros. </div><div class="ttdef"><b>Definition:</b> <a href="matriz_8h_source.html#l00014">matriz.h:14</a></div></div>
+<div class="ttc" id="classTablero_html_acad7588be85438a623ae441cf574b118a01ef4225cb1a14056d0a1d93b8eea2aa"><div class="ttname"><a href="classTablero.html#acad7588be85438a623ae441cf574b118a01ef4225cb1a14056d0a1d93b8eea2aa">Tablero::FICHA_J2</a></div><div class="ttdoc">Representa una ficha del jugador 2. </div><div class="ttdef"><b>Definition:</b> <a href="tablero_8h_source.html#l00040">tablero.h:40</a></div></div>
+<div class="ttc" id="classTablero_html_acad7588be85438a623ae441cf574b118aae90433fbd8e672f9595579f759a6c01"><div class="ttname"><a href="classTablero.html#acad7588be85438a623ae441cf574b118aae90433fbd8e672f9595579f759a6c01">Tablero::VACIA</a></div><div class="ttdoc">Representa una ficha o casilla vacia. </div><div class="ttdef"><b>Definition:</b> <a href="tablero_8h_source.html#l00038">tablero.h:38</a></div></div>
+<div class="ttc" id="matriz_8h_html"><div class="ttname"><a href="matriz_8h.html">matriz.h</a></div><div class="ttdoc">Interfaz de la clase Matriz </div></div>
+<div class="ttc" id="classTablero_html_ad5cd5b9ca952a40a8fd7813ecb4daabc"><div class="ttname"><a href="classTablero.html#ad5cd5b9ca952a40a8fd7813ecb4daabc">Tablero::compruebaFinalizada</a></div><div class="ttdeci">bool compruebaFinalizada() const</div><div class="ttdoc">Comprueba si hay alguna alineación de m_fichas fichas. </div><div class="ttdef"><b>Definition:</b> <a href="tablero_8cpp_source.html#l00012">tablero.cpp:12</a></div></div>
+<div class="ttc" id="classTablero_html"><div class="ttname"><a href="classTablero.html">Tablero</a></div><div class="ttdoc">Gestiona un tablero de tamaño variable para el juego Conecta-N. </div><div class="ttdef"><b>Definition:</b> <a href="tablero_8h_source.html#l00016">tablero.h:16</a></div></div>
+<div class="ttc" id="classTablero_html_acad7588be85438a623ae441cf574b118a5aa5ce138b365bd80b28131d1ffeea6c"><div class="ttname"><a href="classTablero.html#acad7588be85438a623ae441cf574b118a5aa5ce138b365bd80b28131d1ffeea6c">Tablero::FICHA_J1</a></div><div class="ttdoc">Representa una ficha del jugador 1. </div><div class="ttdef"><b>Definition:</b> <a href="tablero_8h_source.html#l00039">tablero.h:39</a></div></div>
+<div class="ttc" id="classTablero_html_acad7588be85438a623ae441cf574b118"><div class="ttname"><a href="classTablero.html#acad7588be85438a623ae441cf574b118">Tablero::TipoFicha</a></div><div class="ttdeci">TipoFicha</div><div class="ttdoc">Tipo de ficha. </div><div class="ttdef"><b>Definition:</b> <a href="tablero_8h_source.html#l00038">tablero.h:38</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<hr>
+<small>ETS Ingenierías Informática y de Telecomunicación. Universidad de Granada.
+</small>
