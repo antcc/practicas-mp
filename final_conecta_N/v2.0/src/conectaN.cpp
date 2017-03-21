@@ -21,10 +21,11 @@ using namespace ConectaN;
 
 const char* CONF_ID = "#MP-CONECTAN-1.0";
 
-void Cargar(const char* nombre, Tablero& tab,
-            Jugador& jug1, Jugador& jug2)
+bool Cargar(const char* nombre, Tablero& tab,
+            Jugador& jug1, Jugador& jug2, IA& ia)
 {
   ifstream f(nombre);
+  bool is_IA = false;
   char aux[1024];
   while(isspace(f.peek()))
     f.ignore();
@@ -32,9 +33,16 @@ void Cargar(const char* nombre, Tablero& tab,
   f.getline(aux,1024);
   if(!strcmp(aux, CONF_ID)) {
     f >> jug1;
-    f >> jug2;
+    f >> jug2;;
     f >> tab;
   }
+
+  if(!strcmp(jug2.nombre(),"IA"))
+  {
+    ia = jug2;
+    is_IA = true;
+  }
+  return is_IA;
 }
 
 void Salvar(const char* nombre, const Tablero& tab,
@@ -83,7 +91,11 @@ int main(int argc, char* argv[])
   char nombre_j2[1024];
   Tablero tab;
   Jugador j1;
-  Jugador j2;
+  Jugador j2_oponente;
+  IA maquina;
+  Jugador* j2 = &j2_oponente;
+  bool jugarMaquina = false;
+
 
   if (argc == 1) {
     cout << "Introduzca filas: ";
@@ -106,19 +118,45 @@ int main(int argc, char* argv[])
     do {
       cin >> nInsertar;
     } while (nInsertar < 1 || nInsertar > fichas-2);
-    cout << "Introduzca el nombre del primer jugador: ";
-    cin >> nombre_j1;
-    cout << "Introduzca el nombre del segundo jugador: ";
-    cin >> nombre_j2;
+
+    char respuesta;
+    cout << "¿Desea jugar contra la máquina? (S/N): ";
+    do {
+      cin >> respuesta;
+      respuesta = tolower(respuesta);
+    } while (respuesta != 's' && respuesta != 'n');
     cout << endl;
 
+    jugarMaquina = respuesta == 's';
+
+    if (jugarMaquina)
+    {
+      cout << "Introduce tu nombre: ";
+      cin >> nombre_j1;
+	    j2 = &maquina;
+    }
+    else
+    {
+      cout << "Introduzca el nombre del primer jugador: ";
+      cin >> nombre_j1;
+
+      cout << "Introduzca el nombre del segundo jugador: ";
+      cin >> nombre_j2;
+      cout << endl;
+    }
+
     tab = Tablero(f,c,fichas, nInsertar);
-    j1 = Jugador(nombre_j1, 1),
-    j2 = Jugador(nombre_j2, 2);
+    j1 = Jugador(nombre_j1, 1);
+    if (!jugarMaquina) {
+		j2_oponente = Jugador(nombre_j2, 2);
+		j2 = &j2_oponente;
+	}
   }
   else if (argc == 2) {
-    Cargar(argv[1], tab, j1, j2);
+    jugarMaquina = Cargar(argv[1], tab, j1, *j2, maquina);
     cout << "Partida cargada.\n";
+	  if (jugarMaquina)
+      j2 = &maquina;
   }
   else {
     cerr << "conectaN: el programa se inicia sin parámetros, "
@@ -127,11 +165,11 @@ int main(int argc, char* argv[])
   }
 
   // Semilla para jugador automático
-  if (j1.nombre()[0] == '@' || j2.nombre()[0] == '@' )
+  if (jugarMaquina)
     srand(time(0));
 
   Jugador *jugador;
-  int ganador;
+  int ganador = 0;
 
   // Bucle principal del juego
   bool jugar = true;
@@ -145,20 +183,22 @@ int main(int argc, char* argv[])
     bool finalizada = false;
     while(!finalizada) {
       turno = tab.turnoActual();
-      jugador = turno == 1 ? &j1 : &j2;
+      jugador = turno == 1 ? &j1 : j2;
       int insertadas = 0;
-      while (insertadas < tab.getNInsertar() && !finalizada) {
-        int c = jugador->escogeColumna(tab);
+      while (insertadas < tab.getNInsertar() && !finalizada)
+      {
+        Posicion p = jugador->escogeColumna(tab);
 
-        if (c == -1) {
+        if (p.j == -1)
+        {
           cout << "Columna incorrecta. ";
-          DialogoSalvar(tab, j1, j2);
+          DialogoSalvar(tab, j1, *j2);
           cout << endl;
         }
-        else {
-          int f = tab.ultimaFilaLibre(c-1) + 1; // +1 porque queremos la última fila insertada
-          cout << tab.fichasRestantes() << ' ' << tab.turnoActual() << endl;
-          ganador = tab.partidaFinalizada(f,c-1); // c-1 porque las columnas empezaban en 1
+        else
+        {
+          tab.setUltPos(p);
+          ganador = tab.partidaFinalizada();
           finalizada = ganador || (tab.fichasTotales() == tab.getFilas() * tab.getColumnas());
           insertadas++;
         }
@@ -172,7 +212,7 @@ int main(int argc, char* argv[])
       cout << "Ganador: jugador 2.\n";
     else
       cout << "La partida terminó en empate.\n";
-    jugador = ganador ? (ganador == 1 ? &j1 : &j2) : 0;
+    jugador = ganador ? (ganador == 1 ? &j1 : j2) : 0;
 
     if(jugador)
     {
@@ -181,11 +221,11 @@ int main(int argc, char* argv[])
     }
     else {
       j1.aumentaEmpates();
-      j2.aumentaEmpates();
+      j2->aumentaEmpates();
     }
 
     cout << "\n-- Resultados tras la partida --\n";
-    MuestraResultados(j1, j2);
+    MuestraResultados(j1, *j2);
 
     char c;
     cout << "\n¿Jugar de nuevo? (S/N): ";
@@ -201,10 +241,10 @@ int main(int argc, char* argv[])
     tab.vaciar();
   }
   cout << "Resultados finales:\n";
-  MuestraResultados(j1,j2);
+  MuestraResultados(j1,*j2);
   cout << j1.empates() << " empates.\n\n";
 
-  DialogoSalvar(tab, j1, j2);
+  DialogoSalvar(tab, j1, *j2);
 }
 
 /* Fin fichero: conectaN.cpp */

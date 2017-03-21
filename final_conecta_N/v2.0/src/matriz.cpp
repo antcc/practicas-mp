@@ -1,9 +1,3 @@
-/**
-  * @file matriz.cpp
-  * @brief Impmentación de la clase `Matriz`
-  *
-  */
-
 #include <iostream>
 #include <cassert>
 #include "matriz.hpp"
@@ -21,7 +15,6 @@ namespace ConectaN
   // ------------------------------------------------------------------------------------------
   // Constructores / Destructor
   // ------------------------------------------------------------------------------------------
-
   template<class T> Matriz<T>::Matriz(int f, int c): filas(f), columnas(c)
   {
     m = new T[f * c];
@@ -40,7 +33,6 @@ namespace ConectaN
   // ------------------------------------------------------------------------------------------
   // Métodos set/get
   // ------------------------------------------------------------------------------------------
-
   template<class T> void Matriz<T>::setFilas(int f)
   {
     Matriz<T> m_aux(f, columnas);
@@ -72,7 +64,6 @@ namespace ConectaN
   // ------------------------------------------------------------------------------------------
   // Operadores internos
   // ------------------------------------------------------------------------------------------
-  
   template<class T> Matriz<T>& Matriz<T>::operator =(const Matriz<T>& matriz)
   {
     if (this != &matriz)
@@ -87,5 +78,3 @@ namespace ConectaN
     return *this;
   }
 }
-
-/* Fin fichero: matriz.cpp */

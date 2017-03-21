@@ -1,9 +1,3 @@
-/**
-  * @file tablero.cpp
-  * @brief Impmentación de la clase `Tablero`
-  *
-  */
-
 #include <iostream>
 #include <iomanip>  // setw, setfill
 #include <cassert>
@@ -11,16 +5,42 @@
 
 namespace ConectaN
 {
+
+  Posicion operator +(Posicion p1, Posicion p2)
+  {
+    Posicion res = {p1.i + p2.i, p1.j+p2.j};
+    return res;
+  }
+
+  Posicion operator -(Posicion p1, Posicion p2)
+  {
+    Posicion res = {p1.i - p2.i, p1.j - p2.j};
+    return res;
+  }
+
+  bool operator ==(Posicion p1, Posicion p2)
+  {
+    bool res = p1.i == p2.i && p1.j == p2.j;
+    return res;
+  }
+
   // ------------------------------------------------------------------------------------------
   // Constructores
   // ------------------------------------------------------------------------------------------
 
-  Tablero::Tablero(int f, int c, int n, int nInsert) : matriz(f,c), nAlinear(n), nInsertar(nInsert), turno(1)
+  Tablero::Tablero(int f, int c, int n, int nInsert) : matriz(f,c), nAlinear(n), nInsertar(nInsert),
+                                                       turno(1)
   {
     assert(f >= 4 && c >= 4 && nAlinear >= 3 && nInsertar > 0 && nInsertar < nAlinear);
+    ult_pos.i = 0;
+    ult_pos.j = 0;
   }
 
-  Tablero::Tablero() : nAlinear(0), nInsertar(0), turno(0) {}
+  Tablero::Tablero() : nAlinear(0), nInsertar(0), turno(0)
+  {
+    ult_pos.i = 0;
+    ult_pos.j = 0;
+  }
 
   // ------------------------------------------------------------------------------------------
   // Métodos set/get
@@ -47,7 +67,8 @@ namespace ConectaN
     int n = 0;
     for (int i = 0; i < matriz.getFilas(); i++)
       for (int j = 0; j < matriz.getColumnas(); j++)
-        if (matriz(i,j)) n++;
+        if (matriz(i,j))
+          n++;
     return n;
   }
 
@@ -57,84 +78,36 @@ namespace ConectaN
     return matriz.getFilas() * matriz.getColumnas() + nAlinear * 2 + fichasTotales();
   }
 
-  int Tablero::ultimaFilaLibre(int col) const
+  Posicion Tablero::insertar(int c)
   {
-    int f = matriz.getFilas() - 1;
-    while(matriz(f,col)) f--;
-    return f;
-  }
-
-  void Tablero::insertar(int c)
-  {
-    c -= 1; // las columnas empiezan en 1
-    int f = ultimaFilaLibre(c);
-
-    assert(f >= 0);
-    matriz.setElemento(f,c,turno);
-    if (fichasTotales() % nInsertar == 0)
-      turno = turno == 1 ? 2 : 1;
-  }
-
-  /*
-    Parámetros: i es la fila y j la columna de la posición donde se ha puesto ficha,
-    (la última en ponerse), n son las fichas en linea acumuladas, s la dirección que debe seguir (0 son todas).
-    Devuelve 1 si ha ganado el jugador 1,2 si ha ganado el jugador 2, o bien 0 si hay empate o no ha finalizado
-  */
-  int Tablero::partidaFinalizada(int i, int j, int n, int s) const
-  {
-    if (fichasTotales() == matriz.getFilas() * matriz.getColumnas())
-      return 0;
-    if (i < matriz.getFilas() && j < matriz.getColumnas()
-        && matriz(i,j) == (fichasRestantes() < nInsertar ? turno : jugadorAnterior()))
-    {
-      if (n == nAlinear)
-        return jugadorAnterior();
-      switch (s)
+    Posicion p = {-1, c};
+    for (int i = matriz.getFilas() - 1; i > -1; i--)
+      if (matriz.getElemento(i, c) == 0)
       {
-        case 0:
-        {
-          int resultado = 0;
-          for (int k = 1; k < 9 && !resultado; k++)
-            resultado = partidaFinalizada(i, j, n + 1, k);
-          return resultado;
-        }
-
-        case 1:
-          return partidaFinalizada(i - 1, j, n + 1, 1);
-
-        case 2:
-          return partidaFinalizada(i - 1, j + 1, n + 1, 2);
-
-        case 3:
-          return partidaFinalizada(i, j + 1, n + 1, 3);
-
-        case 4:
-          return partidaFinalizada(i + 1, j + 1, n + 1, 4);
-
-        case 5:
-          return partidaFinalizada(i + 1, j, n + 1, 5);
-
-        case 6:
-          return partidaFinalizada(i + 1, j - 1, n + 1, 6);
-
-        case 7:
-          return partidaFinalizada(i, j - 1, n + 1, 7);
-
-        case 8:
-          return partidaFinalizada(i - 1, j - 1, n + 1, 8);
-      }
+        matriz.setElemento(i, c, turno);
+        p.i = i;
+        if (fichasTotales() % nInsertar == 0)
+          turno = turno == 1 ? 2 : 1;
+        return p;
     }
-    return 0;
+    return p;
   }
 
-  // Método de fuerza bruta
   int Tablero::partidaFinalizada() const
   {
-    int resultado = 0;
-    for (int i = 0; i < matriz.getFilas() && !resultado; i++)
-      for (int j = 0; j < matriz.getColumnas() && !resultado; j++)
-        resultado = partidaFinalizada(i, j);
-    return resultado;
+    Posicion direcciones[8] = { {1, 0}, {0, 1}, {1, 1}, {1, -1}, {-1, 0}, {0, -1}, {-1, -1}, {-1, 1} };
+    int ficha = getElemento(ult_pos);
+    if (ficha)
+      for (int i = 0; i < 8; i++)
+      {
+        Posicion d = direcciones[i];
+        int fichasAlineadas = 1;
+        for (Posicion j = ult_pos + d; dentroTablero(j) && getElemento(j) == ficha; j = j + d, fichasAlineadas++);
+        for (Posicion j = ult_pos - d; dentroTablero(j) && getElemento(j) == ficha; j = j - d, fichasAlineadas++);
+        if (fichasAlineadas == nAlinear)
+          return ficha;
+      }
+    return 0;
   }
 
   void Tablero::prettyPrint(char c1, char c2, std::ostream& os) const
@@ -201,5 +174,3 @@ namespace ConectaN
     return is;
   }
 }
-
-/* Fin fichero: tablero.cpp */

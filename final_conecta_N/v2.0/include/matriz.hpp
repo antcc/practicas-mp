@@ -1,9 +1,3 @@
-/**
-  * @file matriz.hpp
-  * @brief Interfaz de la clase `Matriz`
-  *
-  */
-
 #ifndef _MATRIZ_HPP_
 #define _MATRIZ_HPP_
 
@@ -11,20 +5,13 @@
 
 namespace ConectaN
 {
-  /**
-    * @class Matriz
-    * @brief Representa una estructura de datos bidimensionales
-    *
-    * Esta matriz "plantilla" puede almacenar datos de tipo entero o real
-    * según necesidad.
-    */
-  template<class T> class Matriz
+  template<class T>
+  class Matriz
   {
     private:
       // ------------------------------------------------------------------------------------------
       // Datos miembro
       // ------------------------------------------------------------------------------------------
-
       T* m;
       int filas, columnas;
 
@@ -32,7 +19,6 @@ namespace ConectaN
       // ------------------------------------------------------------------------------------------
       // Constructores / Destructor
       // ------------------------------------------------------------------------------------------
-
       Matriz(int f, int c);
       Matriz(const Matriz<T>& m);
       Matriz();
@@ -41,7 +27,6 @@ namespace ConectaN
       // ------------------------------------------------------------------------------------------
       // Métodos set/get
       // ------------------------------------------------------------------------------------------
-
       int getFilas() const {return filas;}
       int getColumnas() const {return columnas;}
       T getElemento(int f, int c) const;
@@ -52,7 +37,6 @@ namespace ConectaN
       // ------------------------------------------------------------------------------------------
       // Operadores internos
       // ------------------------------------------------------------------------------------------
-
       const T& operator()(int f, int c) const {return m[f * columnas + c];}
       T& operator()(int f, int c) {return m[f * columnas + c];}
       Matriz& operator =(const Matriz<T>& matriz);
@@ -60,7 +44,6 @@ namespace ConectaN
       // ------------------------------------------------------------------------------------------
       // Funciones amigas
       // ------------------------------------------------------------------------------------------
-
       template<class D> friend Matriz<D> operator +(const Matriz<D>& m1, const Matriz<D>& m2);
       template<class D> friend Matriz<D> operator -(const Matriz<D>& m1, const Matriz<D>& m2);
       template<class D, class N> friend Matriz<D> operator /(const Matriz<D>& m, N n);
@@ -69,10 +52,8 @@ namespace ConectaN
       // ------------------------------------------------------------------------------------------
       // Métodos públicos
       // ------------------------------------------------------------------------------------------
-
       void reset() {for (int i = 0; i < filas * columnas; i++) m[i] = 0;}
   };
-
   // ------------------------------------------------------------------------------------------
   // Operadores I/O
   // ------------------------------------------------------------------------------------------
@@ -159,5 +140,3 @@ namespace ConectaN
 }
 
 #endif
-
-/* Fin fichero: matriz.hpp */

@@ -8,46 +8,29 @@
 #define _JUGADOR_HPP_
 
 #include <iosfwd>
+#include "tablero.hpp"
 
 namespace ConectaN
 {
-  class Tablero;
-
   /**
     * @class Jugador
     * @brief Representa un jugador (nombre, turno y puntos) del juego Conecta-N
     */
-  class Jugador {
-      // ------------------------------------------------------------------------------------------
-      // Datos miembro
-      // ------------------------------------------------------------------------------------------
-
-      char *m_nombre;
+  class Jugador
+  {
+    protected:
+      char* m_nombre;
       int m_turno;
       int m_puntos;
       int m_ganadas;
       int m_empates;
 
     public:
-      // ------------------------------------------------------------------------------------------
-      // Constructores y destructor
-      // ------------------------------------------------------------------------------------------
-
-      Jugador(const char* nombre, int turno, int puntos = 0, int ganadas = 0, int empates = 0);
       Jugador();
+      Jugador(const char* nombre, int turno, int puntos = 0, int ganadas = 0, int empates = 0);
       Jugador(const Jugador& jug);
-      ~Jugador() {delete[] m_nombre;}
-
-      // ------------------------------------------------------------------------------------------
-      // Operadores internos
-      // ------------------------------------------------------------------------------------------
-
+      virtual ~Jugador() {delete[] m_nombre;}
       Jugador& operator=(const Jugador& jug);
-
-      // ------------------------------------------------------------------------------------------
-      // Métodos set/get
-      // ------------------------------------------------------------------------------------------
-
       const char* nombre() const {return m_nombre;}
       int turno() const {return m_turno;}
       int puntos() const {return m_puntos;}
@@ -55,21 +38,26 @@ namespace ConectaN
       int empates() const {return m_empates;}
       void aumentaGanadas() {m_ganadas++;}
       void aumentaEmpates() {m_empates++;}
-
-      // ------------------------------------------------------------------------------------------
-      // Métodos públicos
-      // ------------------------------------------------------------------------------------------
-
-      int escogeColumna(Tablero& tab) const;
+      virtual Posicion escogeColumna(Tablero& tab, std::istream& is = std::cin, std::ostream& os = std::cout) const;
       void sumaPuntos(const Tablero& tab);
   };
 
-  // ------------------------------------------------------------------------------------------
-  // Operadores I/O
-  // ------------------------------------------------------------------------------------------
+  /**
+  * @class IA
+  * @brief Representa una inteligencia artificial básica, derivada de Jugador.
+  */
+  class IA : public Jugador
+  {
+    public:
+      IA(int puntos = 0, int ganadas = 0, int empates = 0, int turno = 2);
+      IA& operator=(const Jugador& jug);
+      Posicion escogeColumna(Tablero& tab, std::istream& is = std::cin, std::ostream& os = std::cout) const;
+      Posicion posicionGanadora(const Tablero& tab) const;
+  };
 
   std::ostream& operator<<(std::ostream& os, const Jugador& jug);
   std::istream& operator>>(std::istream& is, Jugador& jug);
+  std::istream& operator>>(std::istream& is, IA& jug);
 }
 
 #endif
